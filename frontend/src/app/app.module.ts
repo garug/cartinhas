@@ -10,6 +10,7 @@ import { DeckItemComponent } from './components/deck-item/deck-item.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BarTypesComponent } from './components/bar-types/bar-types.component';
+import { DeckRoutingModule } from './deck/deck-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BarTypesComponent } from './components/bar-types/bar-types.component';
     BrowserModule,
     DeckModule,
     AppRoutingModule,
+    DeckRoutingModule,
     HttpClientModule
   ],
   providers: [],
