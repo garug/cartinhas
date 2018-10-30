@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeckService } from '../deck.service';
+import { Router } from '@angular/router';
+import { Deck } from '../deck';
 
 @Component({
     selector: 'cadastrar-deck',
@@ -7,8 +9,18 @@ import { DeckService } from '../deck.service';
 })
 
 export class CadastrarDeck implements OnInit {
-    constructor(private deckService: DeckService) { }
+
+    deck:Deck;
+
+    constructor(private deckService: DeckService,private router:Router) {
+        this.deck = new Deck();
+    }
 
     ngOnInit(): void { }
 
+    salvar(){
+        this.deckService.setDeck(this.deck).subscribe(
+            response => this.router.navigate(['/'])
+        );
+    }
 }

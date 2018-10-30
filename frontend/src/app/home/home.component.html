@@ -123,6 +123,14 @@
         </div>
       </div>
     </div>
+
+    <div *ngFor="let deck of decks">
+        <h5 class="card-title m-0">{{deck.nome}}</h5>
+        <br/>
+        <div *ngFor="let tipo of deck.tipos">
+            {{tipo.nome}},
+        </div>
+    </div>
   </article>
 </div>
 <a href="/deck" class="btn btn-primary w-100 mt-2">Submit new Deck</a>
