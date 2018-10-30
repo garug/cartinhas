@@ -16,8 +16,4 @@ export class DeckItemComponent implements OnInit {
 
   }
 
-  hasColor(color: string) {
-    return this.deck.types.find(e => e === color);
-  }
-
 }

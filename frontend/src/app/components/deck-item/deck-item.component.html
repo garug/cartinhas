@@ -3,9 +3,7 @@
   <div class="card-body p-2">
     <h5 class="card-title m-0">{{deck.name}}</h5>
     <hr class="m-1">
-    <div class="d-flex align-items-center justify-content-around">
-      <app-bar-types></app-bar-types>
-    </div>
+    <app-bar-types [types]="deck.types"></app-bar-types>
     <hr class="m-1">
     <div class="row no-gutters">
       <div class="col px-1">
