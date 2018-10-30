@@ -1,3 +1,4 @@
+import { DeckService } from './../deck/deck.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  listDecks: Array<any>;
+
+  constructor(private _deckService: DeckService) { }
 
   ngOnInit() {
+    this.carregarDecks();
+  }
+
+  private carregarDecks() {
+    this.listDecks = this._deckService.getDecks();
   }
 
 }
