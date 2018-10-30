@@ -23,7 +23,6 @@ import { DeckRoutingModule } from './deck/deck-routing.module';
     BrowserModule,
     DeckModule,
     AppRoutingModule,
-    DeckRoutingModule,
     HttpClientModule
   ],
   providers: [],

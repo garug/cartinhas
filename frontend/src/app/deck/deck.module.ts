@@ -1,3 +1,4 @@
+import { DeckRoutingModule } from './deck-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +9,7 @@ import { ViewDeckComponent } from './view-deck/view-deck.component';
 
 @NgModule({
     declarations: [CadastrarDeck, ViewDeckComponent],
-    imports: [CommonModule],
+    imports: [CommonModule, DeckRoutingModule],
     exports: [CadastrarDeck],
     providers: [DeckService],
 })
