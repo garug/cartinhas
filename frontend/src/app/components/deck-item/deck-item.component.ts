@@ -1,4 +1,4 @@
-import { Deck } from './../../deck/deck';
+import { Deck } from './../../deck/models/deck';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
