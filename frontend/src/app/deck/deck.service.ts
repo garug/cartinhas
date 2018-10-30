@@ -11,6 +11,7 @@ export class DeckService {
   getDecks() {
     return [
       {
+        'id': 1,
         'name': 'nome do deck',
         'types': ['blue', 'red', 'black', 'green', 'white'],
         'raritys': {
