@@ -9,12 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { DeckItemComponent } from './components/deck-item/deck-item.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { BarTypesComponent } from './components/bar-types/bar-types.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DeckItemComponent
+    DeckItemComponent,
+    BarTypesComponent
   ],
   imports: [
     BrowserModule,
