@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CadastrarDeck } from './deck/cadastrar/cadastrar-deck.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: 'deck', loadChildren: 'app/deck/deck.module#DeckModule'}
+  {path: '', component: HomeComponent},
+  {path: 'deck', component: CadastrarDeck}
 ];
 
 @NgModule({
