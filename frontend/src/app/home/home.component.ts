@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeckService } from '../deck/deck.service';
-import { Deck } from '../entity/deck';
+
+import { Deck } from './../deck/models/deck';
 
 @Component({
   selector: 'app-home-component',
@@ -11,40 +12,18 @@ export class HomeComponent implements OnInit {
 
   listDecks: Array<any>;
 
-  constructor(private service:DeckService) { }
+  constructor(private deckService: DeckService) { }
 
   ngOnInit() {
-    //this.getDecks();
-    //this.carregarDecks();
+    this.getDecks();
   }
 
-  decks:Array<Deck> = [
-    {
-      "id":1,
-      "nome":"Deck 1",
-      "cores": [{"id":1,"nome":"AZUL"}],
-      "cartas": [{"id":1,"nome":"Carta 1","raridade":"mitica"}],
-      "countMitica" : 1,
-      "countRara" : 1,
-      "countIncomum" : 1,
-      "countNormal" : 1
-    },
-    {
-      "id":2,
-      "nome":"Deck 2",
-      "cores": [{"id":1,"nome":"AZUL"}],
-      "cartas": [{"id":2,"nome":"Carta 2","raridade":"mitica"}],
-      "countMitica" : 1,
-      "countRara" : 1,
-      "countIncomum" : 1,
-      "countNormal" : 1
-    }
-  ];
-
-  public getDecks(){
-    this.service.getDecks().subscribe(
-      response => this.decks = response
-    );
+  public getDecks() {
+    console.log(this.deckService.getDecks());
+    this.listDecks = this.deckService.getDecks();
+    // this.deckService.getDecks().subscribe(
+    //   response => this.decks = response
+    // );
   }
 
 }

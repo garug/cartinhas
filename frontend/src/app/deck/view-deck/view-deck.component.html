@@ -1,3 +1,21 @@
-<p>
-  view-deck works!
-</p>
+<h1>Nome do Deck</h1>
+<div class="row d-flex align-items-center">
+  <app-bar-types [iconSize]="30"></app-bar-types>
+  <app-bar-raritys class="flex-grow-1"></app-bar-raritys>
+</div>
+<section>
+  <h2>Deck List</h2>
+  <article>
+    <h3>Creatures(1)</h3>
+    <ul>
+      <li class="d-flex">
+        <span class="flex-grow-1">3 Dream Eater</span>
+        <span></span>
+        <span>
+          (4)(U)(U)
+        </span>
+      </li>
+    </ul>
+  </article>
+  <button class="btn btn-block btn-primary">Export to Arena</button>
+</section>

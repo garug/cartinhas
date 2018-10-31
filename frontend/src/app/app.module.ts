@@ -8,7 +8,7 @@ import { DeckModule } from './deck/deck.module';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -23,9 +23,10 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserModule,
     BrowserAnimationsModule,
     ComponentsModule,
-    DeckModule,
+    HttpClientModule,
+
     AppRoutingModule,
-    HttpClientModule
+    DeckModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

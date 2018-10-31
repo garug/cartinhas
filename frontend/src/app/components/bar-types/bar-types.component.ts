@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Cor } from 'src/app/entity/cor';
 
 @Component({
   selector: 'app-bar-types',
@@ -7,7 +6,7 @@ import { Cor } from 'src/app/entity/cor';
   styleUrls: ['./bar-types.component.scss']
 })
 export class BarTypesComponent implements OnInit {
-  @Input() types: Array<Cor>;
+  @Input() types: Array<any>;
   @Input() iconSize = 15;
 
   constructor() { }
