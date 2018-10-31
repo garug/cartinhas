@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BarTypesComponent implements OnInit {
   @Input() types: Array<any>;
+  @Input() iconSize = 15;
 
   constructor() { }
 
@@ -14,6 +15,9 @@ export class BarTypesComponent implements OnInit {
   }
 
   hasColor(color: string) {
-    return this.types.find(e => e === color);
+    if (this.types) {
+      return this.types.find(e => e === color);
+    }
+    return true;
   }
 }
