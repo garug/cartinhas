@@ -1,6 +1,6 @@
 export class Resource {
 
-    public static getUrl(){
-        return "http://localhost:8080";
+    public static getUrl() {
+        return 'http://localhost:8080';
     }
 }
