@@ -13,7 +13,7 @@ export class CadastrarDeckComponent implements OnInit {
     deck: Deck;
 
     constructor(private deckService: DeckService, private router: Router) {
-        this.deck = new Deck(null, null, null, null);
+        this.deck = new Deck();
     }
 
     ngOnInit(): void { }
