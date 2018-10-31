@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Resource } from '../resource';
+import { Resource } from '../shared/resource';
 import { HttpClient } from '@angular/common/http';
 import { Deck } from '../entity/deck';
 
