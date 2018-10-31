@@ -1,6 +1,5 @@
 package br.com.cartinhas.entity;
 
-import br.com.cartinhas.enuns.ECor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -8,22 +7,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Carta {
+public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nome;
+    private String name;
 
-    private String raridade;
+    private String rarity;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany()
     @JoinTable(name = "CARTA_CORES")
-    private List<Cor> cores;
+    private List<Color> colors;
 
-    public Carta(){
+    public Card(){
 
     }
 
@@ -35,27 +34,27 @@ public class Carta {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getRaridade() {
-        return raridade;
+    public String getRarity() {
+        return rarity;
     }
 
-    public void setRaridade(String raridade) {
-        this.raridade = raridade;
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
     }
 
-    public List<Cor> getCores() {
-        return cores;
+    public List<Color> getColors() {
+        return colors;
     }
 
-    public void setCores(List<Cor> cores) {
-        this.cores = cores;
+    public void setColors(List<Color> colors) {
+        this.colors = colors;
     }
 }

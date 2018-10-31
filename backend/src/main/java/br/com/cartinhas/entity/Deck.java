@@ -1,6 +1,5 @@
 package br.com.cartinhas.entity;
 
-import br.com.cartinhas.enuns.ECor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -15,36 +14,38 @@ public class Deck {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nome;
+    private String name;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany()
     @JoinTable(name = "DECK_CARTAS")
-    private List<Carta> cartas;
+    private List<Card> cards;
 
     @Transient
-    private List<Cor> cores;
+    private List<Color> colors;
 
     @Transient
-    private Integer countMitica;
+    private Integer countM;
 
     @Transient
-    private Integer countRara;
+    private Integer countR;
 
     @Transient
-    private Integer countIncomum;
+    private Integer countU;
 
     @Transient
-    private Integer countNormal;
+    private Integer countC;
 
+//    Constructor
     public Deck() {
 
     }
 
-    public Deck(String nome) {
-        this.nome = nome;
+    public Deck(String name) {
+        this.name = name;
     }
 
+//    Getters and Setters
     public Long getId() {
         return id;
     }
@@ -53,89 +54,87 @@ public class Deck {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<Carta> getCartas() {
-        return cartas;
+    public List<Card> getCards() {
+        return cards;
     }
 
-    public void setCartas(List<Carta> cartas) {
-        this.cartas = cartas;
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
     }
 
-    public List<Cor> getCores() {
-        if(!cartas.isEmpty()){
-            cores= new ArrayList<>();
-            for (Carta carta:cartas) {
-                cores.addAll(carta.getCores());
+    public List<Color> getColors() {
+        if(!cards.isEmpty()){
+            cards= new ArrayList<>();
+            cards.forEach(c -> colors.addAll(c.getColors()));
+        }
+        return colors;
+    }
+
+    public void setColors(List<Color> cores) {
+        this.colors = cores;
+    }
+
+    public Integer getCountM() {
+        countM=0;
+        for (Card card :cards) {
+            if(card.getRarity().equals("mitica")){
+                countM++;
             }
         }
-        return cores;
+        return countM;
     }
 
-    public void setCores(List<Cor> cores) {
-        this.cores = cores;
-    }
-
-    public Integer getCountMitica() {
-        countMitica=0;
-        for (Carta carta:cartas) {
-            if(carta.getRaridade().equals("mitica")){
-                countMitica++;
-            }
-        }
-        return countMitica;
-    }
-
-    public void setCountMitica(Integer countMitica) {
-        this.countMitica = countMitica;
+    public void setCountM(Integer countM) {
+        this.countM = countM;
     }
 
     public Integer getCountRara() {
-        countRara=0;
-        for (Carta carta:cartas) {
-            if(carta.getRaridade().equals("rara")){
-                countRara++;
+        countR=0;
+        for (Card card :cards) {
+            if(card.getRarity().equals("rara")){
+                countR++;
             }
         }
-        return countRara;
+        return countR;
     }
 
-    public void setCountRara(Integer countRara) {
-        this.countRara = countRara;
+    public void setCountR(Integer countRara) {
+        this.countR = countRara;
     }
 
-    public Integer getCountIncomum() {
-        countIncomum=0;
-        for (Carta carta:cartas) {
-            if(carta.getRaridade().equals("incomum")){
-                countIncomum++;
+    public Integer getCountR() {
+        countU=0;
+        for (Card card :cards) {
+            if(card.getRarity().equals("incomum")){
+                countU++;
             }
         }
-        return countIncomum;
+        return countU;
     }
 
-    public void setCountIncomum(Integer countIncomum) {
-        this.countIncomum = countIncomum;
+    public void setCountU(Integer countIncomum) {
+        this.countU = countIncomum;
     }
 
-    public Integer getCountNormal() {
-        countNormal=0;
-        for (Carta carta:cartas) {
-            if(carta.getRaridade().equals("normal")){
-                countNormal++;
+    public Integer getCountC() {
+        countC=0;
+        for (Card card :cards) {
+            if(card.getRarity().equals("normal")){
+                countC++;
             }
         }
-        return countNormal;
+        return countC;
     }
 
-    public void setCountNormal(Integer countNormal) {
-        this.countNormal = countNormal;
+    public void setCountC(Integer countC) {
+        this.countC = countC;
     }
 }

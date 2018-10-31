@@ -1,13 +1,13 @@
 export class Deck {
     private _id: number;
     private _name: string;
-    private _types: Array<any>;
+    private _colors: Array<any>;
     private _raritys: Array<any>;
     private _cards: Array<any>;
 
-    constructor(name, types, raritys, cards) {
+    constructor(name?, colors?, raritys?, cards?) {
         this._name = name;
-        this._types = types;
+        this._colors = colors;
         this._raritys = raritys;
         this._cards = cards;
         return this;

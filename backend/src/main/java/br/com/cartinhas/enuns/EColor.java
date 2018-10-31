@@ -1,12 +1,12 @@
 package br.com.cartinhas.enuns;
 
-public enum ETipo {
+public enum EColor {
 
     AZUL("Azul"),PRETO("Preto");
 
     private String descricao;
 
-    private ETipo(String descricao){
+    private EColor(String descricao){
         this.descricao = descricao;
     }
 

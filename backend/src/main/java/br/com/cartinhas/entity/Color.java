@@ -1,21 +1,20 @@
 package br.com.cartinhas.entity;
 
-import br.com.cartinhas.enuns.ECor;
-import br.com.cartinhas.enuns.ETipo;
+import br.com.cartinhas.enuns.EColor;
 
 import javax.persistence.*;
 
 @Entity
-public class Cor {
+public class Color {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private ECor nome;
+    private EColor nome;
 
-    public Cor(){}
+    public Color(){}
 
     public Long getId() {
         return id;
@@ -25,11 +24,11 @@ public class Cor {
         this.id = id;
     }
 
-    public ECor getNome() {
+    public EColor getNome() {
         return nome;
     }
 
-    public void setNome(ECor nome) {
+    public void setNome(EColor nome) {
         this.nome = nome;
     }
 }
