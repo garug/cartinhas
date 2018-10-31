@@ -4,8 +4,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'deck', component: CadastrarDeck},
-  {path: 'deck/:id', component: ViewDeckComponent}
+  {
+    path: 'deck', children: [
+      { path: '', component: CadastrarDeck},
+      { path: ':id', component: ViewDeckComponent }
+    ]
+  }
 ];
 
 @NgModule({
