@@ -96,7 +96,7 @@ public class Deck {
         this.countM = countM;
     }
 
-    public Integer getCountRara() {
+    public Integer getCountR() {
         countR=0;
         for (Card card :cards) {
             if(card.getRarity().equals("rara")){
@@ -110,14 +110,8 @@ public class Deck {
         this.countR = countRara;
     }
 
-    public Integer getCountR() {
-        countU=0;
-        for (Card card :cards) {
-            if(card.getRarity().equals("incomum")){
-                countU++;
-            }
-        }
-        return countU;
+    public Long getCountU() {
+        return cards.stream().filter(c -> c.getRarity().equals("incomum")).count();
     }
 
     public void setCountU(Integer countIncomum) {
