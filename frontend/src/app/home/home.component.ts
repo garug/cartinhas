@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DeckService } from '../deck/deck.service';
-import { Deck } from '../deck/deck';
+import { Deck } from '../entity/deck';
 
 @Component({
   selector: 'app-home-component',
@@ -15,12 +15,22 @@ export class HomeComponent implements OnInit {
     {
       "id":1,
       "nome":"Deck 1",
-      "tipos": [{"id":1,"nome":"AZUL"}]
+      "cores": [{"id":1,"nome":"AZUL"}],
+      "cartas": [{"id":1,"nome":"Carta 1","raridade":"mitica"}],
+      "countMitica" : 1,
+      "countRara" : 1,
+      "countIncomum" : 1,
+      "countNormal" : 1
     },
     {
       "id":2,
       "nome":"Deck 2",
-      "tipos": [{"id":1,"nome":"AZUL"}]
+      "cores": [{"id":1,"nome":"AZUL"}],
+      "cartas": [{"id":2,"nome":"Carta 2","raridade":"mitica"}],
+      "countMitica" : 1,
+      "countRara" : 1,
+      "countIncomum" : 1,
+      "countNormal" : 1
     }
   ];
 
@@ -31,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getDecks();
+    //this.getDecks();
   }
 
 }

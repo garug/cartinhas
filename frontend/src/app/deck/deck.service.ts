@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Resource } from '../resource';
 import { HttpClient } from '@angular/common/http';
-import { Deck } from './deck';
+import { Deck } from '../entity/deck';
 
 @Injectable({
   providedIn: 'root'

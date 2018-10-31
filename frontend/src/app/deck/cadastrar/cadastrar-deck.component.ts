@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeckService } from '../deck.service';
 import { Router } from '@angular/router';
-import { Deck } from '../deck';
+import { Deck } from '../../entity/deck';
 
 @Component({
     selector: 'cadastrar-deck',

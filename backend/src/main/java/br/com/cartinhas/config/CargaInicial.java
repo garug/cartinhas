@@ -45,9 +45,9 @@ public class CargaInicial implements ApplicationListener<ContextRefreshedEvent> 
 
 
 
-            createDeck("Deck 1", Arrays.asList(tipo1));
-            createDeck("Deck 2",Arrays.asList(tipo1,tipo2));
-            createDeck("Deck 3",Arrays.asList(tipo1,tipo2));
+            createDeck("Deck 1", Arrays.asList(tipo1,tipo2));
+            createDeck("Deck 2", Arrays.asList(tipo1,tipo2));
+            createDeck("Deck 3", Arrays.asList(tipo1,tipo2));
             createDeck("Deck 4", Arrays.asList(tipo1,tipo2));
 
         }
@@ -56,7 +56,7 @@ public class CargaInicial implements ApplicationListener<ContextRefreshedEvent> 
 
     public void createDeck(String name, List<Tipo> tipos) {
 
-        Deck user = new Deck(name, tipos );
+        Deck user = new Deck(name);
         deckRepository.save(user);
     }
 
