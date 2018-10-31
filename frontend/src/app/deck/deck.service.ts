@@ -26,13 +26,14 @@ export class DeckService {
   getDecks() {
     return [
       {
-        "name": "nome do deck",
-        "tipo": ["azul", "preto"],
-        "cartas": {
-          "mitica": 4,
-          "rara": 5,
-          "incomum": 5,
-          "normal": 4
+        'id': 1,
+        'name': 'nome do deck',
+        'types': ['blue', 'red', 'black', 'green', 'white'],
+        'raritys': {
+          'm': 10,
+          'r': 12,
+          'u': 14,
+          'c': 18
         }
       }
     ]

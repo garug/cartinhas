@@ -9,7 +9,14 @@ import { Deck } from '../entity/deck';
 })
 export class HomeComponent implements OnInit {
 
+  listDecks: Array<any>;
+
   constructor(private service:DeckService) { }
+
+  ngOnInit() {
+    //this.getDecks();
+    //this.carregarDecks();
+  }
 
   decks:Array<Deck> = [
     {
@@ -38,10 +45,6 @@ export class HomeComponent implements OnInit {
     this.service.getDecks().subscribe(
       response => this.decks = response
     );
-  }
-
-  ngOnInit() {
-    //this.getDecks();
   }
 
 }

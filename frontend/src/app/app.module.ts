@@ -1,3 +1,4 @@
+import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -21,6 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ComponentsModule,
     DeckModule,
     AppRoutingModule,
     HttpClientModule
