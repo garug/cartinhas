@@ -18,12 +18,14 @@ export class HomeComponent implements OnInit {
     this.getDecks();
   }
 
-  public getDecks() {
-    console.log(this.deckService.getDecks());
-    this.listDecks = this.deckService.getDecks();
-    // this.deckService.getDecks().subscribe(
-    //   response => this.decks = response
-    // );
+  getDecks() {
+    // this.listDecks = this.deckService.getDecks();
+     this.deckService.getDecks().subscribe(
+       response =>  {
+         console.log(response);
+         this.listDecks = response;
+       }
+     );
   }
 
 }

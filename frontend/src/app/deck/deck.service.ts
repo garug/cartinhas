@@ -20,21 +20,21 @@ export class DeckService {
     return this.http.post(this.url, deck);
   }
 
-  getDecks() {
-    // return this.http.get<Deck[]>(this.url);
-    return [
-      {
-        'id': 1,
-        'name': 'nome do deck',
-        'types': ['blue', 'red', 'black', 'green', 'white'],
-        'raritys': {
-          'm': 10,
-          'r': 12,
-          'u': 14,
-          'c': 18
-        }
-      }
-    ];
+  getDecks(): Observable<any[]> {
+    return this.http.get<Deck[]>(this.url);
+    // return [
+    //   {
+    //     'id': 1,
+    //     'name': 'nome do deck',
+    //     'types': ['blue', 'red', 'black', 'green', 'white'],
+    //     'raritys': {
+    //       'm': 10,
+    //       'r': 12,
+    //       'u': 14,
+    //       'c': 18
+    //     }
+    //   }
+    // ];
   }
   /*
     getDecks() {
