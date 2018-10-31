@@ -1,9 +1,9 @@
 <div class="card mx-1">
   <img class="card-img-top" src="https://img.ibxk.com.br/2018/07/27/27142737866442.jpg?w=600" alt="Card image cap">
   <div class="card-body p-2">
-    <h5 class="card-title m-0"><a routerLink="/deck/{{deck.id}}">{{deck.name}}</a></h5>
+    <h5 class="card-title m-0"><a routerLink="/deck/{{deck.id}}">{{deck.nome}}</a></h5>
     <hr class="m-1">
-    <app-bar-types [types]="deck.types"></app-bar-types>
+    <app-bar-types [types]="deck.cores"></app-bar-types>
     <hr class="m-1">
     <div class="row no-gutters">
       <div class="col px-1">
@@ -96,10 +96,10 @@
       </div>
     </div>
     <div class="row no-gutters text-center">
-      <span class="col">{{deck.raritys.m}}</span>
-      <span class="col">{{deck.raritys.r}}</span>
-      <span class="col">{{deck.raritys.u}}</span>
-      <span class="col">{{deck.raritys.c}}</span>
+      <span class="col">{{deck.countMitica}}</span>
+      <span class="col">{{deck.countRara}}</span>
+      <span class="col">{{deck.countIncomum}}</span>
+      <span class="col">{{deck.countNormal}}</span>
     </div>
   </div>
 </div>
