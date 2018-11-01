@@ -88,7 +88,7 @@
     </svg>
   </div>
 </div>
-<div class="row no-gutters text-center">
+<div *ngIf="deck" class="row no-gutters text-center">
   <span class="col">{{deck.countM}}</span>
   <span class="col">{{deck.countR}}</span>
   <span class="col">{{deck.countU}}</span>
