@@ -2,6 +2,7 @@ package br.com.cartinhas.controller;
 
 import br.com.cartinhas.entity.Deck;
 import br.com.cartinhas.repository.DeckRepository;
+import br.com.cartinhas.service.DeckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,9 @@ public class DeckController {
     @Autowired
     private DeckRepository deckRepository;
 
+    @Autowired
+    private DeckService deckService;
+
     @RequestMapping(value="", method = RequestMethod.GET)
     public List<Deck> getDeck(){
         return deckRepository.findAll();
@@ -24,7 +28,7 @@ public class DeckController {
 
     @RequestMapping(value="", method = RequestMethod.POST)
     public Deck setDeck(@RequestBody Deck deck){
-        return deckRepository.save(deck);
+        return deckService.save(deck);
     }
 
     @RequestMapping(value="", method = RequestMethod.PUT)

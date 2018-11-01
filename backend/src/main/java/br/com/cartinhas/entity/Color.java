@@ -16,6 +16,10 @@ public class Color {
 
     public Color(){}
 
+    public Color(EColor nome) {
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }

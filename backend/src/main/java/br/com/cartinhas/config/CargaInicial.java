@@ -1,6 +1,9 @@
 package br.com.cartinhas.config;
 
+import br.com.cartinhas.entity.Color;
 import br.com.cartinhas.entity.Deck;
+import br.com.cartinhas.enuns.EColor;
+import br.com.cartinhas.repository.ColorRepository;
 import br.com.cartinhas.repository.DeckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -16,8 +19,16 @@ public class CargaInicial implements ApplicationListener<ContextRefreshedEvent> 
     @Autowired
     private DeckRepository deckRepository;
 
+    @Autowired
+    private ColorRepository colorRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+
+        Color color = new Color(EColor.AZUL);
+        colorRepository.save(color);
+        color = new Color(EColor.PRETO);
+        colorRepository.save(color);
 
         List<Deck> decks = deckRepository.findAll();
 
