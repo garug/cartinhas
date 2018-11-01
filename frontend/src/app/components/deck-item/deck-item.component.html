@@ -1,7 +1,7 @@
 <div class="card mx-1 mb-2">
   <img class="card-img-top" src="https://img.ibxk.com.br/2018/07/27/27142737866442.jpg?w=600" alt="Card image cap">
   <div class="card-body p-2">
-    <h5 class="card-title m-0"><a routerLink="/deck/{{deck.id}}">{{deck.name}}</a></h5>
+    <h5 class="card-title m-0"><a (click)="edit(deck)">{{deck.name}}</a></h5>
     <hr class="m-1">
     <app-bar-types [colors]="deck.colors"></app-bar-types>
     <hr class="m-1">
