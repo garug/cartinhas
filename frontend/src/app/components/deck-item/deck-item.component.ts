@@ -1,7 +1,5 @@
-import { DeckService } from './../../deck/deck.service';
 import { Deck } from './../../deck/models/deck';
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-deck-item',
@@ -11,17 +9,11 @@ import { Router } from '@angular/router';
 export class DeckItemComponent implements OnInit {
   @Input() deck: Deck;
 
-  constructor(
-    private deckService: DeckService,
-    private router: Router
-  ) {
+  constructor() {
   }
 
   ngOnInit() {
 
   }
 
-  edit(deck: Deck) {
-    this.deckService.callToEdit(deck);
-  }
 }
