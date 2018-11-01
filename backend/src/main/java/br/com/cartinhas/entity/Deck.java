@@ -83,7 +83,6 @@ public class Deck {
     }
 
     public List<Color> getColors() {
-//        cards.forEach(c -> colors.addAll(c.getColors()));
         return colors;
     }
 
@@ -95,31 +94,15 @@ public class Deck {
         return cards.stream().filter(c -> c.getRarity().equals("mitica")).count();
     }
 
-    public void setCountM(Long countM) {
-        this.countM = countM;
-    }
-
     public Long getCountR() {
         return cards.stream().filter(c -> c.getRarity().equals("rara")).count();
-    }
-
-    public void setCountR(Long countR) {
-        this.countR = countR;
     }
 
     public Long getCountU() {
         return cards.stream().filter(c -> c.getRarity().equals("incomum")).count();
     }
 
-    public void setCountU(Long countIncomum) {
-        this.countU = countIncomum;
-    }
-
     public Long getCountC() {
         return cards.stream().filter(c -> c.getRarity().equals("normal")).count();
-    }
-
-    public void setCountC(Long countC) {
-        this.countC = countC;
     }
 }
