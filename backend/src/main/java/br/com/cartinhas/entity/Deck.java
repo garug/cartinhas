@@ -86,10 +86,6 @@ public class Deck {
         return colors;
     }
 
-    public void setColors(List<Color> cores) {
-        this.colors = cores;
-    }
-
     public Long getCountM() {
         return cards.stream().filter(c -> c.getRarity().equals("mitica")).count();
     }
