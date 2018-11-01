@@ -12,4 +12,8 @@ export class Deck {
     private _countU: number;
     private _countC: number;
     private _cardImp: string;
+
+    get id() {
+        return this.id;
+    }
 }
