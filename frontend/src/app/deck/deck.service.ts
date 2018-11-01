@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,13 +12,33 @@ import { Deck } from './models/deck';
 
 export class DeckService {
 
-  private url = Resource.getUrl() + '/deck';
+  private _sharedDeck: Deck = null;
+  private _url = Resource.getUrl() + '/deck';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
+
+  get url() {
+    return this._url;
+  }
+
+  get sharedDeck() {
+    return this._sharedDeck;
+  }
+
+  set sharedDeck(deck: Deck) {
+    this._sharedDeck = deck;
+  }
 
 
   setDeck(deck: Deck): Observable<any> {
     return this.http.post(this.url, deck);
+  }
+
+  callToEdit(deck: Deck) {
+    this.router.navigate([`/deck/${deck.id}`]);
   }
 
   getDecks(): Observable<any[]> {
@@ -36,20 +57,4 @@ export class DeckService {
     //   }
     // ];
   }
-  /*
-    getDecks() {
-      return [
-        {
-          'id': 1,
-          'name': 'nome do deck',
-          'types': ['blue', 'red', 'black', 'green', 'white'],
-          'raritys': {
-            'm': 10,
-            'r': 12,
-            'u': 14,
-            'c': 18
-          }
-        }
-      ]
-    }*/
 }
