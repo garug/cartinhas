@@ -3,9 +3,12 @@ package br.com.cartinhas.entity;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import br.com.cartinhas.enuns.EColor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Deck {
@@ -23,9 +26,6 @@ public class Deck {
 
     @Transient
     private String cardImp;
-
-    @Transient
-    private List<Color> colors;
 
     @Transient
     private Long countM;
@@ -82,23 +82,26 @@ public class Deck {
         this.cardImp = cardImp;
     }
 
-    public List<Color> getColors() {
-        return colors;
+    public List<EColor> getColors() {
+    	
+    	List<EColor> colors = new ArrayList<EColor>();
+    	cards.forEach(c -> colors.addAll(c.getColors()));
+        return colors.stream().distinct().collect(Collectors.toList());
     }
 
     public Long getCountM() {
-        return cards.stream().filter(c -> c.getRarity().equals("mitica")).count();
+        return cards.stream().filter(c -> c.getRarity().equals("Mythic Rare")).count();
     }
 
     public Long getCountR() {
-        return cards.stream().filter(c -> c.getRarity().equals("rara")).count();
+        return cards.stream().filter(c -> c.getRarity().equals("Rare")).count();
     }
 
     public Long getCountU() {
-        return cards.stream().filter(c -> c.getRarity().equals("incomum")).count();
+        return cards.stream().filter(c -> c.getRarity().equals("Uncommon")).count();
     }
 
     public Long getCountC() {
-        return cards.stream().filter(c -> c.getRarity().equals("normal")).count();
+        return cards.stream().filter(c -> c.getRarity().equals("Common")).count();
     }
 }
