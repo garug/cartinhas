@@ -7,10 +7,14 @@ import br.com.cartinhas.enuns.EColor;
 import br.com.cartinhas.repository.CardRepository;
 import br.com.cartinhas.repository.ColorRepository;
 import br.com.cartinhas.repository.DeckRepository;
+import io.magicthegathering.javasdk.api.CardAPI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class DeckService {
@@ -39,21 +43,13 @@ public class DeckService {
             qtd= Integer.valueOf(card.substring(0, card.indexOf(" ")));
             for (int i =0; i<qtd;i++){
                 Card cardAux = new Card();
-                cardAux.setName(card.substring(card.indexOf(" "), card.indexOf("(")).trim());
-                cardAux.setRarity("mitica");//pegar da api
-                cardAux.setColors(Arrays.asList(colorRepository.findById(1L).get()));//pegar da api
+//                cardAux.setName(card.substring(card.indexOf(" "), card.indexOf("(")).trim());
+//                cardAux.setRarity("mitica");//pegar da api
+//                cardAux.setColors(Arrays.asList(colorRepository.findById(1L).get()));//pegar da api
                 cardRepository.save(cardAux);
                 deck.getCards().add(cardAux);
             }
         }
         return deck;
     }
-    
-    private Map<Integer,Card> readLine(String line) {
-    	Card c = new Card();
-    	Map<Integer, Card> m = new HashMap<Integer, Card>();
-    	m.put(2, c);
-    	return m;
-    }
-
 }
