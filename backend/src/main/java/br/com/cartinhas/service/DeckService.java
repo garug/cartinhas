@@ -48,5 +48,12 @@ public class DeckService {
         }
         return deck;
     }
+    
+    private Map<Integer,Card> readLine(String line) {
+    	Card c = new Card();
+    	Map<Integer, Card> m = new HashMap<Integer, Card>();
+    	m.put(2, c);
+    	return m;
+    }
 
 }
