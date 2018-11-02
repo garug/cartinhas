@@ -2,6 +2,7 @@ package br.com.cartinhas.config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -60,6 +61,11 @@ public class CargaInicial implements ApplicationListener<ContextRefreshedEvent> 
     public void createDeck(String name) {
 
         Deck user = new Deck(name);
+        for(int i=0;i<10;i++){
+        	Random rand = new Random();
+        	List<Card> findAll = cardRepository.findAll();
+        	user.getCards().add(findAll.get(rand.nextInt(findAll.size())));
+        }
         deckRepository.save(user);
     }
 
