@@ -1,3 +1,4 @@
+import { Card } from './models/card';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,6 +14,7 @@ import { Deck } from './models/deck';
 export class DeckService {
 
   private _url = Resource.getUrl() + '/deck';
+  private _api = Resource.apiUrl();
 
   constructor(
     private http: HttpClient
@@ -22,9 +24,39 @@ export class DeckService {
     return this._url;
   }
 
+  get api(){
+    return this._api;
+  }
+
   callDeck(id: Number) {
     const retorno = this.http.get(`${this.url}/${id}`);
     return retorno;
+  }
+
+  callCards(cards: Array<any>) {
+    const searchIds = new Array<String>();
+    let allIds = 1;
+    cards.forEach(c => {
+      searchIds.push(c.idReference);
+      if (allIds === cards.length) {
+        this.http.get(`${this.api}/?id=${searchIds.join('|')}`).subscribe(response => this.responseToCards(response, cards));
+      }
+      allIds++;
+      // this.http.get(`${this.api}/?id=${c.idReference}`).subscribe(response => {
+      //   const tempCard: Card = response['cards'][0];
+      //   c.name = tempCard.name;
+      // });
+    });
+  }
+
+  private responseToCards(response, cards) {
+    cards.forEach(card => {
+      response['cards'].forEach(cardResponse => {
+        if (cardResponse.id === card.idReference) {
+          card.name = cardResponse.name;
+        }
+      });
+    });
   }
 
   setDeck(deck: Deck): Observable<any> {
