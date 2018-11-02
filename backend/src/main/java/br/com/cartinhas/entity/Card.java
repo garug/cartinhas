@@ -72,4 +72,8 @@ public class Card {
     public List<EColor> getColors() {
         return colors;
     }
+    
+    public List<String> getTypes() {
+    	return this.types;
+    }
 }
