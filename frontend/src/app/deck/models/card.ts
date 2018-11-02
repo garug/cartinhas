@@ -1,8 +1,10 @@
-import { Color } from "./color";
-
 export class Card {
-    id: number;
-    name: string;
-    rarity: string;
-    colors: Array<Color>;
+    private _id: Number;
+    private _name: String;
+    private _rarity: String;
+    private _colors: Array<any>;
+
+    set name(name: String) {
+        this._name = name;
+    }
 }

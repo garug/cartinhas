@@ -14,7 +14,15 @@ export class Deck {
     private _cardImp: string;
 
     get id() {
-        return this.id;
+        return this._id;
+    }
+
+    get cards() {
+        return this._cards;
+    }
+
+    set cards(cards) {
+        this._cards = cards;
     }
 
     constructor(obj?) {
