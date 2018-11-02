@@ -1,29 +1,59 @@
 package br.com.cartinhas.entity;
 
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import br.com.cartinhas.enuns.EColor;
+
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    private Long id;    
+    private String idReference;
+    
+    @Transient
     private String name;
 
+    @ElementCollection
+    private List<EColor> colors;
+    
+    private String manaCost;    
     private String rarity;
+    
+    @ElementCollection
+    private List<String> types;
 
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany()
-    @JoinTable(name = "CARTA_CORES")
-    private List<Color> colors;
-
-    public Card(){
-
+    public Card(){ }
+    
+    public Card(String idReference, List<EColor> colors, String manaCost, String rarity){
+    	this.idReference = idReference;
+    	this.colors = colors;
+    	this.manaCost = manaCost;
+    	this.rarity = rarity;
+    }
+    
+    public Card(String idReference, String[] colors, String manaCost, String rarity, String[] types){
+    	this.idReference = idReference;
+    	if (colors != null) {
+   
+    		this.colors = Arrays.asList(colors).stream()
+    				.map(e -> EColor.valueOf(e))
+    				.collect(Collectors.toList());
+    	}
+    	
+    	this.manaCost = manaCost;
+    	this.rarity = rarity;
+    	this.types = Arrays.asList(types);
     }
 
     public Long getId() {
@@ -50,11 +80,11 @@ public class Card {
         this.rarity = rarity;
     }
 
-    public List<Color> getColors() {
+    public List<EColor> getColors() {
         return colors;
     }
 
-    public void setColors(List<Color> colors) {
+    public void setColors(List<EColor> colors) {
         this.colors = colors;
     }
 }
