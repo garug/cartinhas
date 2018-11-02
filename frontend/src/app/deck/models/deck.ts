@@ -16,4 +16,8 @@ export class Deck {
     get id() {
         return this.id;
     }
+
+    constructor(obj?) {
+        return Object.assign({}, obj);
+    }
 }
