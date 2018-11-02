@@ -12,33 +12,23 @@ import { Deck } from './models/deck';
 
 export class DeckService {
 
-  private _sharedDeck: Deck = null;
   private _url = Resource.getUrl() + '/deck';
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) { }
 
   get url() {
     return this._url;
   }
 
-  get sharedDeck() {
-    return this._sharedDeck;
+  callDeck(id: Number) {
+    const retorno = this.http.get(`${this.url}/${id}`);
+    return retorno;
   }
-
-  set sharedDeck(deck: Deck) {
-    this._sharedDeck = deck;
-  }
-
 
   setDeck(deck: Deck): Observable<any> {
     return this.http.post(this.url, deck);
-  }
-
-  callToEdit(deck: Deck) {
-    this.router.navigate([`/deck/${deck.id}`]);
   }
 
   getDecks(): Observable<any[]> {
