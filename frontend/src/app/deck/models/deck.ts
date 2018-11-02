@@ -1,31 +1,48 @@
+import { EnumTypes } from './../../enums/e-types';
 import { Card } from './card';
 import { Color } from './color';
 
 export class Deck {
-    private _id: number;
-    private _name: string;
-    private _description: string;
-    private _colors: Array<Color>;
+    public static types = Object.keys(EnumTypes);
+
+    private id: number;
+    private name: string;
+    private description: string;
+    private colors: Array<Color>;
     private _cards: Array<Card>;
-    private _countM: number;
-    private _countR: number;
-    private _countU: number;
-    private _countC: number;
-    private _cardImp: string;
+    private countM: number;
+    private countR: number;
+    private countU: number;
+    private countC: number;
+    private cardImp: string;
 
-    get id() {
-        return this._id;
-    }
 
-    get cards() {
+    public get cards() {
         return this._cards;
     }
 
-    set cards(cards) {
+    public set cards(cards) {
         this._cards = cards;
     }
 
     constructor(obj?) {
-        return Object.assign({}, obj);
+        return Object.assign(this, obj);
+    }
+
+    allTypes() {
+        return Object.values(EnumTypes);
+    }
+
+    list(type: EnumTypes) {
+        if (this.cards) {
+            const cards = this.cards.filter(e => e.types[0] === type);
+            return cards.length > 0 ? cards : false;
+        }
+    }
+
+    countTypes(type: EnumTypes) {
+        if (this.cards) {
+            return this.cards.filter(e => e.types[0] === type).length;
+        }
     }
 }
