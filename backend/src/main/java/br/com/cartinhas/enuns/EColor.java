@@ -2,7 +2,11 @@ package br.com.cartinhas.enuns;
 
 public enum EColor {
 
-    AZUL("Azul"),PRETO("Preto");
+	Black("Black"),
+    Blue("Blue"),
+    Green("Green"),
+    Red("Red"),
+    White("White");
 
     private String descricao;
 
