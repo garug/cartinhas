@@ -18,7 +18,10 @@ export class ViewDeckComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(p => {
-      this.deckService.callDeck(p['id']).subscribe(d => this.deck = new Deck(d));
+      this.deckService.callDeck(p['id']).subscribe(d => {
+        this.deck = new Deck(d);
+        this.deckService.callCards(this.deck.cards);
+      });
     });
   }
 
