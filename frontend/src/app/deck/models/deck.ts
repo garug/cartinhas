@@ -35,7 +35,7 @@ export class Deck {
 
     list(type: EnumTypes) {
         if (this.cards) {
-            const cards = this.cards.filter(e => e.types[0] === type);
+            const cards = this.cards.filter(e => e.types[0] === type && this.cards.find(e2 => e2.name === e.name) === e);
             return cards.length > 0 ? cards : false;
         }
     }

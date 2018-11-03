@@ -1,3 +1,4 @@
+import { Card } from './../models/card';
 import { Deck } from './../models/deck';
 import { DeckService } from './../deck.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewDeckComponent implements OnInit {
   deck: Deck = new Deck();
-  decks:Array<Deck>;
+  decks: Array<Deck>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,27 +25,37 @@ export class ViewDeckComponent implements OnInit {
         this.deckService.callCards(this.deck.cards);
       });
     });
-/*
-    this.activatedRoute.params.subscribe(p => {
+    /*
+        this.activatedRoute.params.subscribe(p => {
 
-      this.deckService.getDeck(p['id']).subscribe(
-        response => this.deck = response
-      );
+          this.deckService.getDeck(p['id']).subscribe(
+            response => this.deck = response
+          );
 
-    });
+        });
 
-    this.deck.cards.forEach(c => {
-      this.deckService.getCardAPI(c.idReference).subscribe(
-        response => {
-          this.deck.cards.forEach(card => {
-            response['cards'].forEach(cardResponse => {
-              if (cardResponse.id === card.idReference) {
-                card.name = cardResponse.name;
-              }
-            });
-          });
-        })
-    });*/
+        this.deck.cards.forEach(c => {
+          this.deckService.getCardAPI(c.idReference).subscribe(
+            response => {
+              this.deck.cards.forEach(card => {
+                response['cards'].forEach(cardResponse => {
+                  if (cardResponse.id === card.idReference) {
+                    card.name = cardResponse.name;
+                  }
+                });
+              });
+            })
+        });*/
+  }
+
+  contCard(card: Card) {
+    return this.deck.cards.reduce((prevVal, elem) => {
+      if (elem.idReference === card.idReference) {
+        return prevVal += 1;
+      } else {
+        return prevVal;
+      }
+    }, 0);
   }
 
 }
