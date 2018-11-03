@@ -5,4 +5,6 @@ import br.com.cartinhas.entity.Deck;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CardRepository extends JpaRepository<Card,Long> {
+
+    Card findByIdReference(String id);
 }
