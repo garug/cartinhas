@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewDeckComponent implements OnInit {
   deck: Deck = new Deck();
+  decks:Array<Deck>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,6 +24,27 @@ export class ViewDeckComponent implements OnInit {
         this.deckService.callCards(this.deck.cards);
       });
     });
+/*
+    this.activatedRoute.params.subscribe(p => {
+
+      this.deckService.getDeck(p['id']).subscribe(
+        response => this.deck = response
+      );
+
+    });
+
+    this.deck.cards.forEach(c => {
+      this.deckService.getCardAPI(c.idReference).subscribe(
+        response => {
+          this.deck.cards.forEach(card => {
+            response['cards'].forEach(cardResponse => {
+              if (cardResponse.id === card.idReference) {
+                card.name = cardResponse.name;
+              }
+            });
+          });
+        })
+    });*/
   }
 
 }

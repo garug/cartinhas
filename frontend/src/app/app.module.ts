@@ -14,6 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { SocialLoginModule, AuthServiceConfig } from "angular5-social-login";
 import { FacebookLoginProvider,GoogleLoginProvider } from "angular5-social-login";
 import { SigninComponentComponent, getAuthServiceConfigs } from './signin-component/signin-component.component';
+import { GroupByPipe } from './group-by.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SigninComponentComponent, getAuthServiceConfigs } from './signin-compon
     HomeComponent,
     MenuComponent,
     PageNotFoundComponent,
-    SigninComponentComponent
+    SigninComponentComponent,
+    //GroupByPipe,
   ],
   imports: [
     BrowserModule,

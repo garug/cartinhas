@@ -63,7 +63,17 @@ export class DeckService {
     return this.http.post(this.url, deck);
   }
 
-  getDecks(): Observable<any[]> {
+  getDeck(id: Number): Observable<Deck> {
+    return this.http.get<Deck>(this.url+"/"+id);
+  }
+
+  getCardAPI(idReference: String): Observable<any>{
+    const searchIds = new Array<String>();
+    searchIds.push(idReference);
+    return this.http.get(`${this.api}/?id=${searchIds.join('|')}`);
+  }
+
+  getDecks(): Observable<Deck[]> {
     return this.http.get<Deck[]>(this.url);
     // return [
     //   {

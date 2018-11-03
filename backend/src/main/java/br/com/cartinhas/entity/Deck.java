@@ -19,6 +19,7 @@ public class Deck {
 
     private String name;
 
+    @OrderBy("idReference")
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany()
     @JoinTable(name = "DECK_CARTAS")
