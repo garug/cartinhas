@@ -8,8 +8,10 @@
 
   <ul *ngFor="let object of deck.cards | groupBy:'types'">
       {{ object.key }}
-      <li *ngFor="let object of object.value ">
-          {{ object.name }}
+      <li *ngFor="let object of object.value ; let i = index ;let c = count;">
+        <span *ngIf="i === c-1">
+             {{c}}x -  {{ object.name }}
+          </span>
           <!--  {{ object | json }}-->
       </li>
   </ul>
