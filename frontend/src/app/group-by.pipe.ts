@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class GroupByPipe implements PipeTransform {
 
-  transform(collection: any, property: string): any {
+  transform(collection: Array<any>, property: string): Array<any> {
     // prevents the application from breaking if the array of objects doesn't exist yet
     if(!collection) {
         return null;
