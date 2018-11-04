@@ -20,41 +20,16 @@ export class ViewDeckComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(p => {
-      this.deckService.callDeck(p['id']).subscribe(d => {
+      this.deckService.getDeck(p['id']).subscribe(d => {
         this.deck = new Deck(d);
         this.deckService.callCards(this.deck.cards);
       });
     });
-    /*
-        this.activatedRoute.params.subscribe(p => {
-
-          this.deckService.getDeck(p['id']).subscribe(
-            response => this.deck = response
-          );
-
-        });
-
-        this.deck.cards.forEach(c => {
-          this.deckService.getCardAPI(c.idReference).subscribe(
-            response => {
-              this.deck.cards.forEach(card => {
-                response['cards'].forEach(cardResponse => {
-                  if (cardResponse.id === card.idReference) {
-                    card.name = cardResponse.name;
-                  }
-                });
-              });
-            })
-        });*/
   }
 
   contCard(card: Card) {
     return this.deck.cards.reduce((prevVal, elem) => {
-      if (elem.idReference === card.idReference) {
-        return prevVal += 1;
-      } else {
-        return prevVal;
-      }
+      return elem.idReference === card.idReference ? prevVal += 1 : prevVal;
     }, 0);
   }
 

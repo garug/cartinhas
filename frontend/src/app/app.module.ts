@@ -5,16 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeckModule } from './deck/deck.module';
-import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './menu/menu.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { SocialLoginModule, AuthServiceConfig } from "angular5-social-login";
-import { FacebookLoginProvider,GoogleLoginProvider } from "angular5-social-login";
+import { SocialLoginModule, AuthServiceConfig } from 'angular5-social-login';
 import { SigninComponentComponent, getAuthServiceConfigs } from './signin-component/signin-component.component';
-import { GroupByPipe } from './group-by.pipe';
+
+import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +23,6 @@ import { GroupByPipe } from './group-by.pipe';
     MenuComponent,
     PageNotFoundComponent,
     SigninComponentComponent,
-    //GroupByPipe,
   ],
   imports: [
     BrowserModule,
