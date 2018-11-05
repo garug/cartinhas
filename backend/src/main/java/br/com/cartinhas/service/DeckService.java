@@ -2,6 +2,7 @@ package br.com.cartinhas.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,10 +31,12 @@ public class DeckService {
 
     private Deck trataCadsDeck(Deck deck) {
         String language = "Portuguese (Brazil)";//mudar para message.properties quando for feia a internacionalizacao
-        String[] cards = deck.getCardImp().split(System.getProperty("line.separator"));
-        int qtd = 0;
-        for (String card: cards) {
-            qtd= Integer.valueOf(card.substring(0, card.indexOf(" ")));
+        Scanner scanner = new Scanner(deck.getCardImp());
+        
+        int qtd = 0;        
+        while(scanner.hasNextLine()){
+        	String card = scanner.nextLine();
+        	qtd= Integer.valueOf(card.substring(0, card.indexOf(" ")));
             for (int i =0; i<qtd;i++){
                 Card cardAux;
                 String name = card.substring(card.indexOf(" "), card.indexOf("(")).trim();
@@ -62,6 +65,7 @@ public class DeckService {
 //                cardRepository.save(cardAux);
             }
         }
+        scanner.close();
         return deck;
     }
 
