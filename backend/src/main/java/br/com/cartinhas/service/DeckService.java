@@ -1,16 +1,16 @@
 package br.com.cartinhas.service;
 
-import br.com.cartinhas.entity.Card;
-import br.com.cartinhas.entity.Deck;
-import br.com.cartinhas.repository.CardRepository;
-import br.com.cartinhas.repository.ColorRepository;
-import br.com.cartinhas.repository.DeckRepository;
-import io.magicthegathering.javasdk.api.CardAPI;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import br.com.cartinhas.entity.Card;
+import br.com.cartinhas.entity.Deck;
+import br.com.cartinhas.repository.CardRepository;
+import br.com.cartinhas.repository.DeckRepository;
+import io.magicthegathering.javasdk.api.CardAPI;
 
 @Service
 public class DeckService {
@@ -20,9 +20,6 @@ public class DeckService {
 
     @Autowired
     private CardRepository cardRepository;
-
-    @Autowired
-    private ColorRepository colorRepository;
 
     public Deck save(Deck deck) {
 
@@ -73,7 +70,7 @@ public class DeckService {
 
         try{
             cardsAPI = CardAPI.getAllCards(filter);
-        }catch (Exception e){
+        } catch (Exception e){
             pesquisaAPI( filter);
         }
 
