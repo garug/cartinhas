@@ -36,14 +36,14 @@ export class DeckService {
     return this.http.get<Deck>(`${this.url}/${id}`);
   }
 
-  setDeck(deck: Deck): Observable<any> {
-    return this.http.post(this.url, deck);
+  setDeck(deck: Deck): Observable<Deck> {
+    return this.http.post<Deck>(this.url, deck);
   }
 
-  getCardAPI(idReference: String): Observable<any> {
+  getCardAPI(idReference: String): Observable<Card[]> {
     const searchIds = new Array<String>();
     searchIds.push(idReference);
-    return this.http.get(`${this.api}/?id=${searchIds.join('|')}`);
+    return this.http.get<Card[]>(`${this.api}/?id=${searchIds.join('|')}`);
   }
 
   callCards(cards: Array<any>) {

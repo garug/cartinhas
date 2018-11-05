@@ -10,7 +10,7 @@ import { Deck } from './../deck/models/deck';
 })
 export class HomeComponent implements OnInit {
 
-  listDecks: Array<any>;
+  listDecks: Array<Deck>;
 
   constructor(private deckService: DeckService) { }
 
@@ -21,5 +21,4 @@ export class HomeComponent implements OnInit {
   getDecks() {
      this.deckService.getDecks().subscribe(response =>  this.listDecks = response);
   }
-
 }
