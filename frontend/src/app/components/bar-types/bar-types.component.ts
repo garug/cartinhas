@@ -15,10 +15,6 @@ export class BarTypesComponent implements OnInit {
   }
 
   hasColor(color: string) {
-    if (this.colors) {
-      return this.colors.find(e => e === color);
-    } else {
-      return true;
-    }
+    return this.colors ? this.colors.find(e => e === color) : true;
   }
 }

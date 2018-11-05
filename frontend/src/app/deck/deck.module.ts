@@ -8,10 +8,9 @@ import { DeckService } from './deck.service';
 import { CadastrarDeckComponent } from './cadastrar/cadastrar-deck.component';
 import { ViewDeckComponent } from './view-deck/view-deck.component';
 import { FormsModule } from '@angular/forms';
-import { GroupByPipe } from '../group-by.pipe';
 
 @NgModule({
-    declarations: [CadastrarDeckComponent, ViewDeckComponent, GroupByPipe,],
+    declarations: [CadastrarDeckComponent, ViewDeckComponent],
     imports: [
         CommonModule,
         ComponentsModule,

@@ -24,13 +24,26 @@ export class DeckService {
     return this._url;
   }
 
-  get api(){
+  get api() {
     return this._api;
   }
 
-  callDeck(id: Number) {
-    const retorno = this.http.get(`${this.url}/${id}`);
-    return retorno;
+  getDecks(): Observable<Deck[]> {
+    return this.http.get<Deck[]>(this.url);
+  }
+
+  getDeck(id: Number): Observable<Deck> {
+    return this.http.get<Deck>(`${this.url}/${id}`);
+  }
+
+  setDeck(deck: Deck): Observable<any> {
+    return this.http.post(this.url, deck);
+  }
+
+  getCardAPI(idReference: String): Observable<any> {
+    const searchIds = new Array<String>();
+    searchIds.push(idReference);
+    return this.http.get(`${this.api}/?id=${searchIds.join('|')}`);
   }
 
   callCards(cards: Array<any>) {
@@ -42,10 +55,6 @@ export class DeckService {
         this.http.get(`${this.api}/?id=${searchIds.join('|')}`).subscribe(response => this.responseToCards(response, cards));
       }
       allIds++;
-      // this.http.get(`${this.api}/?id=${c.idReference}`).subscribe(response => {
-      //   const tempCard: Card = response['cards'][0];
-      //   c.name = tempCard.name;
-      // });
     });
   }
 
@@ -57,36 +66,5 @@ export class DeckService {
         }
       });
     });
-  }
-
-  setDeck(deck: Deck): Observable<any> {
-    return this.http.post(this.url, deck);
-  }
-
-  getDeck(id: Number): Observable<Deck> {
-    return this.http.get<Deck>(this.url+"/"+id);
-  }
-
-  getCardAPI(idReference: String): Observable<any>{
-    const searchIds = new Array<String>();
-    searchIds.push(idReference);
-    return this.http.get(`${this.api}/?id=${searchIds.join('|')}`);
-  }
-
-  getDecks(): Observable<Deck[]> {
-    return this.http.get<Deck[]>(this.url);
-    // return [
-    //   {
-    //     'id': 1,
-    //     'name': 'nome do deck',
-    //     'types': ['blue', 'red', 'black', 'green', 'white'],
-    //     'raritys': {
-    //       'm': 10,
-    //       'r': 12,
-    //       'u': 14,
-    //       'c': 18
-    //     }
-    //   }
-    // ];
   }
 }

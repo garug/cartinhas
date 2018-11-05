@@ -1,7 +1,8 @@
 export enum EnumTypes {
     Planeswalker = 'Planeswalker',
     Creature = 'Creature',
-    Artifact = 'Artifact',
+    Instant = 'Instant',
     Enchantment = 'Enchantment',
-    Lands = 'Lands',
+    Artifact = 'Artifact',
+    Land = 'Land',
 }
