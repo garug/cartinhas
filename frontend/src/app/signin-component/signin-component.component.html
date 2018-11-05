@@ -2,6 +2,9 @@
   Sign in
 </h1>
 
+<p><img src="{{userImageUrl}}"> is the <i>interpolated</i> image.</p>
+<p><img [src]="userImageUrl"> is the <i>property bound</i> image.</p>
+
 <button (click)="socialSignIn('facebook')">Sign in with Facebook</button>
-<button (click)="socialSignIn('google')">Signin in with Google</button>
-<button (click)="facebookLogin()" >Login with Facebook</button>
+<!-- <button (click)="socialSignIn('google')">Signin in with Google</button>
+<button (click)="facebookLogin()" >Login with Facebook</button> -->

@@ -14,6 +14,8 @@ import {
 })
 export class SigninComponentComponent implements OnInit {
 
+  userImageUrl: String;
+
   constructor( private socialAuthService: AuthService, private http: HttpClient ) {}
 
   ngOnInit() {
@@ -31,6 +33,9 @@ export class SigninComponentComponent implements OnInit {
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
         // Now sign-in with userData
+        this.userImageUrl = userData.image;
+
+        this.sendToRestApiMethod(userData.token);
 
 
       }
@@ -67,7 +72,7 @@ export function getAuthServiceConfigs() {
       [
         {
           id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider("Your-Facebook-app-id")//"{FACEBOOK_APP_ID_HERE}"
+          provider: new FacebookLoginProvider("972616062945910") //("Your-Facebook-app-id")//"{FACEBOOK_APP_ID_HERE}"
         },
         {
           id: GoogleLoginProvider.PROVIDER_ID,
