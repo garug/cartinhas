@@ -28,7 +28,14 @@ public class DeckService {
 
        return deckRepository.save(deck);
     }
-
+    
+	/**
+	 * Returns a valid deck with all cards when reciving a deck with deckImp.
+	 * @param deck deck with valid informations like name and maybe another cards
+	 * @author marcleonio
+	 * @author garug
+	 * @return deck
+	 */
     private Deck trataCadsDeck(Deck deck) {
         String language = "Portuguese (Brazil)";//mudar para message.properties quando for feia a internacionalizacao
         Scanner scanner = new Scanner(deck.getCardImp());
