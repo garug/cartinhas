@@ -46,15 +46,16 @@ export class DeckService {
     return this.http.get<Card[]>(`${this.api}/?id=${searchIds.join('|')}`);
   }
 
-  callCards(cards: Array<any>) {
-    const searchIds = new Array<String>();
-    let allIds = 1;
+  callCards(cards: Array<Card>) {
+    let filterId = new Array<String>();
     cards.forEach(c => {
-      searchIds.push(c.idReference);
-      if (allIds === cards.length) {
-        this.http.get(`${this.api}/?id=${searchIds.join('|')}`).subscribe(response => this.responseToCards(response, cards));
+      if (!filterId.find(e => e === c.idReference)) {
+        filterId.push(c.idReference);
       }
-      allIds++;
+      if (cards.length - 1 === cards.findIndex(c2 => c2 === c) || filterId.length === 10) {
+        this.http.get(`${this.api}/?id=${filterId.join('|')}`).subscribe(response => this.responseToCards(response, cards));
+        filterId = new Array<String>();
+      }
     });
   }
 
