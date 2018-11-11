@@ -5,11 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -20,13 +25,14 @@ public class Card {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private transient String id;
+    private Long id;
 
     @SerializedName("id")
     private String idReference;
     
     @ElementCollection
     @SerializedName("foreignNames")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CardName> names;
 
     @ElementCollection
@@ -65,7 +71,7 @@ public class Card {
     	this.types = Arrays.asList(types);
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
     
