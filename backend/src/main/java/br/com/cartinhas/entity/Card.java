@@ -14,8 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Cascade;
-
 import com.google.gson.annotations.SerializedName;
 
 import br.com.cartinhas.enuns.EColor;
@@ -24,7 +22,7 @@ import br.com.cartinhas.enuns.EColor;
 public class Card {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @SerializedName("id")
@@ -43,17 +41,19 @@ public class Card {
     
     private String manaCost;    
     private String rarity;
+    private String set;
     
 
     public Card(){ }
     
-    public Card(String idReference, List<CardName> names, List<EColor> colors, List<String> types, String manaCost, String rarity){
+    public Card(String idReference, List<CardName> names, List<EColor> colors, List<String> types, String manaCost, String rarity, String set){
     	this.idReference = idReference;
     	this.names = names;
     	this.colors = colors;
     	this.types = types;
     	this.manaCost = manaCost;
     	this.rarity = rarity;
+    	this.set = set;
     }
     
     public Card(String idReference, List<EColor> colors, String manaCost, String rarity){
@@ -99,7 +99,11 @@ public class Card {
     	return this.types;
     }
     
-    private List<EColor> mapColors(String[] colors) {
+    public String getSet() {
+		return set;
+	}
+    
+	private List<EColor> mapColors(String[] colors) {
     	return Arrays.asList(colors).stream()
 				.map(e -> EColor.valueOf(e))
 				.collect(Collectors.toList());

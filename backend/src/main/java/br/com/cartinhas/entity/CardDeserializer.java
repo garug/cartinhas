@@ -32,7 +32,8 @@ public class CardDeserializer implements  Serializable, JsonDeserializer<List<Ca
 					this.getColors(ele),
 					this.getTypes(ele),
 					ele.get("manaCost") != null ? ele.get("manaCost").getAsString() : null,
-					ele.get("rarity") != null ? ele.get("rarity").getAsString() : null
+					ele.get("rarity") != null ? ele.get("rarity").getAsString() : null,
+					ele.get("set") != null ? ele.get("set").getAsString() : null
 				);
 			cards.add(card);
 		}
