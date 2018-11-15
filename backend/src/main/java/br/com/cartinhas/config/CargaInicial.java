@@ -1,7 +1,5 @@
 package br.com.cartinhas.config;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -15,7 +13,6 @@ import br.com.cartinhas.entity.Deck;
 import br.com.cartinhas.repository.CardRepository;
 import br.com.cartinhas.repository.DeckRepository;
 import br.com.cartinhas.service.APIService;
-import io.magicthegathering.javasdk.api.CardAPI;
 
 @Component
 public class CargaInicial implements ApplicationListener<ContextRefreshedEvent> {
@@ -32,11 +29,14 @@ public class CargaInicial implements ApplicationListener<ContextRefreshedEvent> 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         List<Deck> decks = deckRepository.findAll();
-        List<Card> cards = api.getList(null);
-        cardRepository.saveAll(cards);
+        String[] sets = {"xln", "rix", "grn", "dom", "m19"};
+
+        for (String set : sets) {
+        	List<Card> cards = api.getFromSet(set);
+        	cardRepository.saveAll(cards);
+        }
 
         if (decks.isEmpty()) {
-
             createDeck("Deck 1");
             createDeck("Deck 3");
             createDeck("Deck 4");

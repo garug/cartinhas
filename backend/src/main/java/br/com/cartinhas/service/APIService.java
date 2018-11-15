@@ -25,35 +25,28 @@ import br.com.cartinhas.entity.CardDeserializer;
 public class APIService {
 	private static String BASE_URL = "https://api.magicthegathering.io/v1";
 	
-	public List<Card> getList(String path) {		
+	public List<Card> getFromSet(String set) {
 		RestTemplate rt = new RestTemplate();
-		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(BASE_URL)
 				.path("/cards/")
-				.queryParam("set", "dom", "xln", "rix", "grn", "m19");
-		ResponseEntity<String> response = rt.exchange(
-				builder.toUriString(),
-				HttpMethod.GET,
-				this.getEntity(),
-				String.class);
+				.queryParam("set", set);
+		ResponseEntity<String> response;
 		Type type = new TypeToken<ArrayList<Card>>(){}.getType();
 		Gson gson = new GsonBuilder().registerTypeAdapter(type, new CardDeserializer()).create();
-		System.out.println(response.getHeaders());
-		List<Card> cards = gson.fromJson(response.getBody(), type);
+		List<Card> cards = new ArrayList<Card>();
 		
-		String total = response.getHeaders().get("Total-Count").get(0);
-		int totalPage = new Integer(total)/100;
-		System.out.println("=== Total: " + total + "\n=== Total Aditional Requests: " + totalPage);
-		for (int page = 1; page <= totalPage;) {
-			System.out.println("=== Request " + page);
-			builder.queryParam("page", ++page);
+		int page = 1;
+		do {
 			response = rt.exchange(
-					builder.toUriString(),
+					uriBuilder
+						.queryParam("page", page++)
+						.toUriString(),
 					HttpMethod.GET,
 					this.getEntity(),
 					String.class);
+			System.out.println(response.getBody());
 			cards.addAll(gson.fromJson(response.getBody(), type));
-		}
-		
+		} while (response.getHeaders().get("Link").toString().contains("next"));
 		return cards;
 	}
 	
