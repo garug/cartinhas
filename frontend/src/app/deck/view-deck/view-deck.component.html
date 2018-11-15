@@ -9,11 +9,12 @@
     <article *ngIf="deck.list(type)">
       <h3>{{type}} ({{deck.countTypes(type)}})</h3>
       <ul>
-        <li class="d-flex" *ngFor="let card of deck.list(type)">
+        <li class="d-flex position-relative" *ngFor="let card of deck.list(type); index as i; canISee as a" (mouseenter)="a = true" (mouseleave)="a = false">
           <ng-container *ngIf="card.name else loading">            
             <span class="flex-grow-1">{{contCard(card)}}x {{card.name}}</span>
             <span></span>
             <app-bar-types *ngIf="type !== 'Land'" [mana]="card.manaCost"></app-bar-types>
+            <img *ngIf="a" src="{{card.imageUrl}}" class="toolCard"/>
           </ng-container>
         </li>
       </ul>
