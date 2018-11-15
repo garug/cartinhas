@@ -24,57 +24,50 @@ public class DeckService {
 
     public Deck save(Deck deck) {
 
-        deck = trataCadsDeck(deck);
+//        deck = trataCadsDeck(deck);
 
-       return deckRepository.save(deck);
+       return null;
     }
-    
-	/**
-	 * Returns a valid deck with all cards when reciving a deck with deckImp.
-	 * @param deck deck with valid informations like name and maybe another cards
-	 * @author marcleonio
-	 * @author garug
-	 * @return deck
-	 */
-    private Deck trataCadsDeck(Deck deck) {
-        String language = "Portuguese (Brazil)";//mudar para message.properties quando for feia a internacionalizacao
-        Scanner scanner = new Scanner(deck.getCardImp());
-        
-        int qtd = 0;        
-        while(scanner.hasNextLine()){
-        	String card = scanner.nextLine();
-        	qtd= Integer.valueOf(card.substring(0, card.indexOf(" ")));
-            for (int i =0; i<qtd;i++){
-                Card cardAux;
-                String name = card.substring(card.indexOf(" "), card.indexOf("(")).trim();
-                String set = card.substring(card.indexOf("(")+1, card.indexOf(")")).trim();
-                if(set.equals("DAR")){
-                    set+="|DOM";
-                }
 
-                List<String> filter = new ArrayList<String>();
-                filter.add("name="+name);
-                filter.add("set="+set);
-                filter.add("language="+language);
-
-                List<io.magicthegathering.javasdk.resource.Card> cardsAPI = pesquisaAPI(filter);
-
-                for(io.magicthegathering.javasdk.resource.Card cardAPI : cardsAPI){
-                    Card findCard = cardRepository.findByIdReference(cardAPI.getId());
-                    if(findCard == null){
-                        cardAux = cardRepository.save(new Card(cardAPI.getId(), cardAPI.getColors(), cardAPI.getManaCost(), cardAPI.getRarity(), cardAPI.getTypes()));
-                    }else{
-                        cardAux = findCard;
-                    }
-                    deck.getCards().add(cardAux);
-                }
-
-//                cardRepository.save(cardAux);
-            }
-        }
-        scanner.close();
-        return deck;
-    }
+//    private Deck trataCadsDeck(Deck deck) {
+//        String language = "Portuguese (Brazil)";//mudar para message.properties quando for feia a internacionalizacao
+//        Scanner scanner = new Scanner(deck.getCardImp());
+//        
+//        int qtd = 0;        
+//        while(scanner.hasNextLine()){
+//        	String card = scanner.nextLine();
+//        	qtd= Integer.valueOf(card.substring(0, card.indexOf(" ")));
+//            for (int i =0; i<qtd;i++){
+//                Card cardAux;
+//                String name = card.substring(card.indexOf(" "), card.indexOf("(")).trim();
+//                String set = card.substring(card.indexOf("(")+1, card.indexOf(")")).trim();
+//                if(set.equals("DAR")){
+//                    set+="|DOM";
+//                }
+//
+//                List<String> filter = new ArrayList<String>();
+//                filter.add("name="+name);
+//                filter.add("set="+set);
+//                filter.add("language="+language);
+//
+//                List<io.magicthegathering.javasdk.resource.Card> cardsAPI = pesquisaAPI(filter);
+//
+//                for(io.magicthegathering.javasdk.resource.Card cardAPI : cardsAPI){
+//                    Card findCard = cardRepository.findByIdReference(cardAPI.getId());
+//                    if(findCard == null){
+////                        cardAux = cardRepository.save(new Card(cardAPI.getId(), cardAPI.getColors(), cardAPI.getManaCost(), cardAPI.getRarity(), cardAPI.getTypes()));
+//                    }else{
+//                        cardAux = findCard;
+//                    }
+//                    deck.getCards().add(cardAux);
+//                }
+//
+////                cardRepository.save(cardAux);
+//            }
+//        }
+//        scanner.close();
+//        return deck;
+//    }
 
     private List<io.magicthegathering.javasdk.resource.Card> pesquisaAPI(List<String> filter) {
         List<io.magicthegathering.javasdk.resource.Card> cardsAPI = null;
