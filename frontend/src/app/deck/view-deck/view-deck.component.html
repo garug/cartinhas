@@ -13,9 +13,7 @@
           <ng-container *ngIf="card.name else loading">            
             <span class="flex-grow-1">{{contCard(card)}}x {{card.name}}</span>
             <span></span>
-            <span>
-              <app-bar-types [mana]="card.manaCost"></app-bar-types>
-            </span>
+            <app-bar-types *ngIf="type !== 'Land'" [mana]="card.manaCost"></app-bar-types>
           </ng-container>
         </li>
       </ul>
