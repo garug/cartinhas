@@ -22,14 +22,13 @@ export class ViewDeckComponent implements OnInit {
     this.activatedRoute.params.subscribe(p => {
       this.deckService.getDeck(p['id']).subscribe(d => {
         this.deck = new Deck(d);
-        this.deckService.callCards(this.deck.cards);
       });
     });
   }
 
   contCard(card: Card) {
     return this.deck.cards.reduce((prevVal, elem) => {
-      return elem.idReference === card.idReference ? prevVal += 1 : prevVal;
+      return elem.name === card.name ? prevVal += 1 : prevVal;
     }, 0);
   }
 

@@ -1,7 +1,6 @@
 package br.com.cartinhas.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cartinhas.entity.Deck;
+import br.com.cartinhas.entity.converter.DeckConverter;
+import br.com.cartinhas.entity.dto.DeckDTO;
 import br.com.cartinhas.repository.DeckRepository;
 import br.com.cartinhas.service.DeckService;
 
@@ -26,14 +27,17 @@ public class DeckController {
     @Autowired
     private DeckService deckService;
     
+    @Autowired
+    private DeckConverter deckConverter;
+    
     @GetMapping(value="/{id}")
-    public Optional<Deck> getById(@PathVariable("id") Long id) {
-    	return deckRepository.findById(id);
+    public DeckDTO getById(@PathVariable("id") Long id) {
+    	return deckConverter.convertToDTO(deckRepository.findById(id).orElse(new Deck()));
     }
 
     @GetMapping
-    public List<Deck> getDeck(){
-        return deckRepository.findAll();
+    public List<DeckDTO> getDeck(){
+        return deckConverter.convertToDTO(deckRepository.findAll());
     }
 
     @PostMapping
