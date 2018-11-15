@@ -10,6 +10,7 @@ public class CardDTO {
 	private String manaCost;
 	private String rarity;
 	private String set;
+	private String imageUrl;
 	private List<EColor> colors;
 	private List<String> types;
 
@@ -18,6 +19,7 @@ public class CardDTO {
 		this.manaCost = entity.getManaCost();
 		this.rarity = entity.getRarity();
 		this.set = entity.getSet();
+		this.imageUrl = entity.getNames().stream().filter(e -> "English".equals(e.getLanguage())).findAny().get().getImageUrl();
 		this.colors = entity.getColors();
 		this.types = entity.getTypes();
 	}
@@ -36,6 +38,10 @@ public class CardDTO {
 
 	public String getSet() {
 		return set;
+	}
+	
+	public String getImageUrl() {
+		return this.imageUrl;
 	}
 
 	public List<EColor> getColors() {
