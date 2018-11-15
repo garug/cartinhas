@@ -1,14 +1,25 @@
 package br.com.cartinhas.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import br.com.cartinhas.enuns.EColor;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.cartinhas.entity.converter.CardConverter;
+import br.com.cartinhas.entity.dto.DeckDTO;
+import br.com.cartinhas.enuns.EColor;
 
 @Entity
 public class Deck {
@@ -39,9 +50,23 @@ public class Deck {
 
     @Transient
     private Long countC;
+    
+    @Autowired
+    @Transient
+    private CardConverter cardConverter;
 
 //    Constructor
     public Deck() { }
+    
+    public Deck(DeckDTO dto) {
+    	this.id = dto.getId();
+		this.name = dto.getName();
+		this.cards = cardConverter.convertToEntity(dto.getCards());
+		this.countM = dto.getCountM();
+		this.countR = dto.getCountR();
+		this.countU = dto.getCountU();
+		this.countC = dto.getCountC();
+    }
 
     public Deck(String name) {
         this.name = name;

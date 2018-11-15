@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import com.google.gson.annotations.SerializedName;
 
+import br.com.cartinhas.entity.dto.CardDTO;
 import br.com.cartinhas.enuns.EColor;
 
 @Entity
@@ -56,19 +57,12 @@ public class Card {
     	this.set = set;
     }
     
-    public Card(String idReference, List<EColor> colors, String manaCost, String rarity){
-    	this.idReference = idReference;
-    	this.colors = colors;
-    	this.manaCost = manaCost;
-    	this.rarity = rarity;
-    }
-    
-    public Card(String idReference, String[] colors, String manaCost, String rarity, String[] types){
-    	this.idReference = idReference;
-    	if (colors != null) this.mapColors(colors);
-    	this.manaCost = manaCost;
-    	this.rarity = rarity;
-    	this.types = Arrays.asList(types);
+    public Card(CardDTO dto) {
+    	this.colors = dto.getColors();
+    	this.types = dto.getTypes();
+    	this.manaCost = dto.getManaCost();
+    	this.rarity = dto.getRarity();
+    	this.set = dto.getSet();
     }
 
     public Long getId() {
