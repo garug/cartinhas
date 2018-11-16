@@ -2,12 +2,40 @@ $theme-colors: (
   "primary": #3AAFB9
 );
 
+$my-color: map_get($theme-colors, "primary");
+
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 
 body {
   background: url("assets/bg-w.jpg");
 }
 
+h1 {
+  font-family: 'Open Sans Condensed', $font-family-monospace;
+  font-weight: bolder;
+}
+
 .wrapper {
-  background: $gray-100;
+  background: $gray-900;
+  padding: $spacer;
+}
+
+.wrapper > h1 {
+  color: $gray-100;
+}
+
+.btn {
+  font-weight: bolder;
+  text-transform: uppercase;
+  border-radius: 0;
+  padding: $spacer/1.3 $spacer;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 .2rem $my-color; 
 }
