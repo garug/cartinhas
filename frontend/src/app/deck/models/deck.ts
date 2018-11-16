@@ -24,12 +24,20 @@ export class Deck {
         return this._name;
     }
 
+    public set name(name: string) {
+        this._name = name;
+    }
+
     public get colors() {
         return this._colors;
     }
     
     public get cardImp() {
         return this._cardImp;
+    }
+
+    public set cardImp(cardImp: string) {
+        this._cardImp = cardImp;
     }
 
     public get cards() {

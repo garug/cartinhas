@@ -44,7 +44,7 @@ public class APIService {
 					HttpMethod.GET,
 					this.getEntity(),
 					String.class);
-			System.out.println(response.getBody());
+//			System.out.println(response.getBody());
 			cards.addAll(gson.fromJson(response.getBody(), type));
 		} while (response.getHeaders().get("Link").toString().contains("next"));
 		return cards;

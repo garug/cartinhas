@@ -1,7 +1,7 @@
 export class Resource {
 
     public static getUrl() {
-        return 'http://localhost:8080';
+        return 'http://backend-garmark.herokuapp.com/';
     }
 
     public static apiUrl() {
