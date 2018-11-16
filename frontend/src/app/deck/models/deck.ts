@@ -5,17 +5,32 @@ import { Color } from './color';
 export class Deck {
     public static types = Object.keys(EnumTypes);
 
-    private id: number;
-    private name: string;
+    private _id: number;
+    private _name: string;
     private description: string;
-    private colors: Array<Color>;
+    private _colors: Array<Color>;
     private _cards: Array<Card>;
     private countM: number;
     private countR: number;
     private countU: number;
     private countC: number;
-    private cardImp: string;
+    private _cardImp: string;
 
+    public get id() {
+        return this._id;
+    }
+
+    public get name() {
+        return this._name;
+    }
+
+    public get colors() {
+        return this._colors;
+    }
+    
+    public get cardImp() {
+        return this._cardImp;
+    }
 
     public get cards() {
         return this._cards;
