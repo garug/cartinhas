@@ -1,1 +1,13 @@
+$theme-colors: (
+  "primary": #3AAFB9
+);
+
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  background: url("assets/bg-w.jpg");
+}
+
+.wrapper {
+  background: $gray-100;
+}
