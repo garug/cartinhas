@@ -8,6 +8,7 @@
 /node_modules
 /backend/.git
 /frontend/.git
+frontend/dist
 
 # IDEs and editors
 /.idea
@@ -38,3 +39,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+*.svg
