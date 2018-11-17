@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 /*import {
   AuthService,
   FacebookLoginProvider,
@@ -7,9 +7,9 @@ import { HttpClient } from "@angular/common/http";
   AuthServiceConfig
 } from 'angular5-social-login';*/
 
-import { SocialLoginModule, AuthServiceConfig, AuthService } from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from "angularx-social-login";
-import { SocialUser } from "angularx-social-login";
+import { SocialLoginModule, AuthServiceConfig, AuthService } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-signin-component',
@@ -20,7 +20,15 @@ export class SigninComponentComponent implements OnInit {
 
   userImageUrl: String;
   private user: SocialUser;
-  private loggedIn: boolean;
+  private _loggedIn: boolean;
+
+  public get loggedIn() {
+    return this._loggedIn;
+  }
+
+  public set loggedIn(logged: boolean) {
+    this._loggedIn = logged;
+  }
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -49,15 +57,15 @@ export class SigninComponentComponent implements OnInit {
 
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
-    if (socialPlatform == "facebook") {
+    if (socialPlatform === 'facebook') {
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    } else if (socialPlatform == "google") {
+    } else if (socialPlatform === 'google') {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
 
     this.authService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform + " sign in data : ", userData);
+        console.log(socialPlatform + 'sign in data :', userData);
         // Now sign-in with userData
         this.user = userData;
         this.userImageUrl = userData.photoUrl;
