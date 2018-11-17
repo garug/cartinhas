@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
+import br.com.cartinhas.enuns.ERarity;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,18 +117,18 @@ public class Deck {
     }
 
     public Long getCountM() {
-        return cards.stream().filter(c -> c.getRarity().equals("Mythic Rare")).count();
+        return cards.stream().filter(c -> c.getRarity().equals(ERarity.MYTHIC_RARE)).count();
     }
 
     public Long getCountR() {
-        return cards.stream().filter(c -> c.getRarity().equals("Rare")).count();
+        return cards.stream().filter(c -> c.getRarity().equals(ERarity.RARE)).count();
     }
 
     public Long getCountU() {
-        return cards.stream().filter(c -> c.getRarity().equals("Uncommon")).count();
+        return cards.stream().filter(c -> c.getRarity().equals(ERarity.UNCOMMON)).count();
     }
 
     public Long getCountC() {
-        return cards.stream().filter(c -> c.getRarity().equals("Common")).count();
+        return cards.stream().filter(c -> c.getRarity().equals(ERarity.COMMON)).count();
     }
 }

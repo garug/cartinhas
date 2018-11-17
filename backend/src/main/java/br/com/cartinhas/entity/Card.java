@@ -5,15 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
+import br.com.cartinhas.enuns.ERarity;
 import com.google.gson.annotations.SerializedName;
 
 import br.com.cartinhas.entity.dto.CardDTO;
@@ -40,14 +34,16 @@ public class Card {
     @ElementCollection
     private List<String> types;
     
-    private String manaCost;    
-    private String rarity;
+    private String manaCost;
+
+    @Enumerated(EnumType.STRING)
+    private ERarity rarity;
     private String set;
     
 
     public Card(){ }
     
-    public Card(String idReference, List<CardName> names, List<EColor> colors, List<String> types, String manaCost, String rarity, String set){
+    public Card(String idReference, List<CardName> names, List<EColor> colors, List<String> types, String manaCost, ERarity rarity, String set){
     	this.idReference = idReference;
     	this.names = names;
     	this.colors = colors;
@@ -81,7 +77,7 @@ public class Card {
     	return this.manaCost;
     }
 
-    public String getRarity() {
+    public ERarity getRarity() {
         return rarity;
     }
 

@@ -1,10 +1,12 @@
 package br.com.cartinhas.entity;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.cartinhas.enuns.ERarity;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -24,6 +26,7 @@ public class CardDeserializer implements  Serializable, JsonDeserializer<List<Ca
 		JsonObject jObject = (JsonObject) json;
 		JsonArray jArray = (JsonArray) jObject.get("cards");
 		List<Card> cards =  new ArrayList<Card>();
+		String anim= "|/-\\";
 		for (int i = 0; i<jArray.size(); i++) {
 			JsonObject ele = (JsonObject) jArray.get(i);
 			Card card = new Card(
@@ -32,11 +35,20 @@ public class CardDeserializer implements  Serializable, JsonDeserializer<List<Ca
 					this.getColors(ele),
 					this.getTypes(ele),
 					ele.get("manaCost") != null ? ele.get("manaCost").getAsString() : null,
-					ele.get("rarity") != null ? ele.get("rarity").getAsString() : null,
+					ele.get("rarity") != null ? ERarity.getByDescription(ele.get("rarity").getAsString()) : null,
 					ele.get("set") != null ? ele.get("set").getAsString() : null
 				);
 			cards.add(card);
+
+			String data = "\r" + "import status set "+ele.get("set")+":"+ anim.charAt(i % anim.length()) + " " + i + "-" +jArray.size();
+			try {
+				System.out.write(data.getBytes());
+				Thread.sleep(100);
+			} catch (IOException | InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
+		System.out.println("");
 		return cards;
 	}
 

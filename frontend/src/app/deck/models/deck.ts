@@ -20,6 +20,10 @@ export class Deck {
         return this._id;
     }
 
+    public set id(id: number) {
+        this._id = id;
+    }
+
     public get name() {
         return this._name;
     }
@@ -31,7 +35,7 @@ export class Deck {
     public get colors() {
         return this._colors;
     }
-    
+
     public get cardImp() {
         return this._cardImp;
     }

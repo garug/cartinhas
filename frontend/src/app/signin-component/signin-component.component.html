@@ -2,9 +2,14 @@
   Sign in
 </h1>
 
-<p><img src="{{userImageUrl}}"> is the <i>interpolated</i> image.</p>
-<p><img [src]="userImageUrl"> is the <i>property bound</i> image.</p>
+<img [src]="user.photoUrl" *ngIf="loggedIn">
+<div *ngIf="loggedIn">
+  <h4>{{ user.name }}</h4>
+  <p>{{ user.email }}</p>
+</div>
+<button (click)="socialSignOut()" *ngIf="loggedIn" >Sign out</button>
+<button class="btn btn-danger" (click)="signOut()">Sign out</button>
 
-<button (click)="socialSignIn('facebook')">Sign in with Facebook</button>
+<button (click)="socialSignIn('facebook')" *ngIf="!loggedIn">Sign in with Facebook</button>
 <!-- <button (click)="socialSignIn('google')">Signin in with Google</button>
 <button (click)="facebookLogin()" >Login with Facebook</button> -->

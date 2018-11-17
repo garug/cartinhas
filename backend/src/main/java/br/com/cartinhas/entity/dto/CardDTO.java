@@ -4,11 +4,12 @@ import java.util.List;
 
 import br.com.cartinhas.entity.Card;
 import br.com.cartinhas.enuns.EColor;
+import br.com.cartinhas.enuns.ERarity;
 
 public class CardDTO {
 	private String name;
 	private String manaCost;
-	private String rarity;
+	private ERarity rarity;
 	private String set;
 	private String imageUrl;
 	private List<EColor> colors;
@@ -32,7 +33,7 @@ public class CardDTO {
 		return manaCost;
 	}
 
-	public String getRarity() {
+	public ERarity getRarity() {
 		return rarity;
 	}
 

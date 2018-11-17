@@ -8,12 +8,14 @@ import { DeckModule } from './deck/deck.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { SocialLoginModule, AuthServiceConfig } from 'angular5-social-login';
+//import { SocialLoginModule, AuthServiceConfig } from 'angular5-social-login';
 import { SigninComponentComponent, getAuthServiceConfigs } from './signin-component/signin-component.component';
 
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+
 
 
 @NgModule({
