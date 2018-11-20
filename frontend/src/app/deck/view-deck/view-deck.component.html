@@ -1,26 +1,33 @@
-<h1>{{deck.name}}</h1>
-<div class="row d-flex align-items-center">
-  <app-bar-types [colors]="deck.colors" [iconSize]="30"></app-bar-types>
-  <app-bar-raritys [deck]="deck" class="flex-grow-1"></app-bar-raritys>
+<div class="wrapper">
+  <div class="d-flex my-4 align-items-center">
+    <h1 class="m-0 mr-2">{{deck.name}}</h1>
+    <app-bar-types [colors]="deck.colors" [iconSize]="20"></app-bar-types>
+  </div>
+  <div class="row d-flex">
+    <section class="content w-100 mx-2 p-2">
+      <div class="d-flex align-items-center justify-content-around">
+          <h2 class="m-0">Deck List</h2>
+          <app-bar-raritys [deck]="deck" class="w-50"></app-bar-raritys>
+      </div>
+      <hr>
+      <ng-container *ngFor="let type of deck.allTypes()">
+        <article *ngIf="deck.list(type)">
+          <h3>{{type}} ({{deck.countTypes(type)}})</h3>
+          <ul class="p-0">
+            <li class="d-flex position-relative py-1" *ngFor="let card of deck.list(type); index as i; canISee as a" (mouseenter)="a = true" (mouseleave)="a = false">
+              <ng-container *ngIf="card.name else loading">            
+                <span class="flex-grow-1">{{contCard(card)}}x {{card.name}}</span>
+                <span></span>
+                <app-bar-types *ngIf="type !== 'Land'" [mana]="card.manaCost"></app-bar-types>
+                <img *ngIf="a" src="{{card.imageUrl}}" class="toolCard"/>
+              </ng-container>
+            </li>
+          </ul>
+        </article>
+      </ng-container>
+      <button class="btn btn-block btn-primary">Export to Arena</button>
+    </section>
+  </div>
 </div>
-<section>
-  <h2>Deck List</h2>
-  <ng-container *ngFor="let type of deck.allTypes()">
-    <article *ngIf="deck.list(type)">
-      <h3>{{type}} ({{deck.countTypes(type)}})</h3>
-      <ul>
-        <li class="d-flex position-relative" *ngFor="let card of deck.list(type); index as i; canISee as a" (mouseenter)="a = true" (mouseleave)="a = false">
-          <ng-container *ngIf="card.name else loading">            
-            <span class="flex-grow-1">{{contCard(card)}}x {{card.name}}</span>
-            <span></span>
-            <app-bar-types *ngIf="type !== 'Land'" [mana]="card.manaCost"></app-bar-types>
-            <img *ngIf="a" src="{{card.imageUrl}}" class="toolCard"/>
-          </ng-container>
-        </li>
-      </ul>
-    </article>
-  </ng-container>
-  <button class="btn btn-block btn-primary">Export to Arena</button>
-</section>
 
 <ng-template #loading>Loading...</ng-template>

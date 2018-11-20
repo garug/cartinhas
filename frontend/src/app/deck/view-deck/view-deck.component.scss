@@ -1,4 +1,10 @@
 .toolCard {
     position: absolute;
-    transform: translateX(-110%) translateY(-65%);
+    transform: translateX(4%) translateY(-102%);
+}
+
+@media (min-width: 1024px) {
+    .toolCard { 
+        transform: translateX(-110%) translateY(-65%);
+    }
 }

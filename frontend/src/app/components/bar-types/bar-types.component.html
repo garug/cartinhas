@@ -1,22 +1,22 @@
 <div class="d-flex align-items-center justify-content-around">
   <!-- Figura Azul -->
-  <figure *ngIf="hasColor('Blue') && !mana" class="m-0">
+  <figure *ngIf="hasColor('Blue') && !mana" class="mx-1 my-0">
     <img [ngStyle]="{'width.px': iconSize}" src="assets/icons/mana/u.svg">
   </figure>
   <!-- Figura Preta -->
-  <figure *ngIf="hasColor('Black') && !mana" class="m-0">
+  <figure *ngIf="hasColor('Black') && !mana" class="mx-1 my-0">
     <img [ngStyle]="{'width.px': iconSize}" src="assets/icons/mana/b.svg">
   </figure>
   <!-- Figura Branca -->
-  <figure *ngIf="hasColor('White') && !mana" class="m-0">
+  <figure *ngIf="hasColor('White') && !mana" class="mx-1 my-0">
     <img [ngStyle]="{'width.px': iconSize}" src="assets/icons/mana/w.svg">
   </figure>
   <!-- Figura Vermelha -->
-  <figure *ngIf="hasColor('Red') && !mana" class="m-0">
+  <figure *ngIf="hasColor('Red') && !mana" class="mx-1 my-0">
     <img [ngStyle]="{'width.px': iconSize}" src="assets/icons/mana/r.svg">
   </figure>
   <!-- Figura Verde -->
-  <figure *ngIf="hasColor('Green') && !mana " class="m-0">
+  <figure *ngIf="hasColor('Green') && !mana " class="mx-1 my-0">
     <img [ngStyle]="{'width.px': iconSize}" src="assets/icons/mana/g.svg">
   </figure>
   <div *ngIf="mana" #manaBar></div>

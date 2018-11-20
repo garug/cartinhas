@@ -11,9 +11,16 @@ body {
   background: url("assets/bg-w.jpg");
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Open Sans Condensed', $font-family-monospace;
   font-weight: bolder;
+}
+
+hr.vertical {
+  border:         none;
+  border-left:    1px solid hsla(200, 10%, 50%,100);
+  height:         100%;
+  width:          1px;
 }
 
 .wrapper {
@@ -21,8 +28,12 @@ h1 {
   padding: $spacer;
 }
 
-.wrapper > h1 {
+.wrapper h1 {
   color: $gray-100;
+}
+
+.wrapper .content {
+  background: $gray-100;
 }
 
 .btn {
@@ -38,4 +49,8 @@ h1 {
 
 .form-control:focus {
   box-shadow: 0 0 0 .2rem $my-color; 
+}
+
+.card {
+  border-color: $gray-700;
 }
