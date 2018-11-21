@@ -13,7 +13,7 @@ export class DeckItemComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.deck = new Deck(this.deck);
   }
 
 }

@@ -16,16 +16,22 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bolder;
 }
 
-hr.vertical {
-  border:         none;
-  border-left:    1px solid hsla(200, 10%, 50%,100);
-  height:         100%;
-  width:          1px;
-}
-
 .wrapper {
   background: $gray-900;
   padding: $spacer;
+}
+
+.crop-card {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 70%;
+}
+
+.crop-card > img {
+  width: 120%;
+  margin-left: -10%;
+  margin-top: -20%;
 }
 
 .wrapper h1 {
