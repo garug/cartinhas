@@ -72,4 +72,14 @@ export class Deck {
             return this.cards.filter(e => e.types[0] === type).length;
         }
     }
+
+    get deckImage() {
+        return this.cards.find(e => e.imageUrl != null && this.contCard(e) > 0).imageUrl;
+    }
+
+    contCard(card: Card) {
+        return this.cards.reduce((prevVal, elem) => {
+            return elem.name === card.name ? prevVal += 1 : prevVal;
+        }, 0);
+    }
 }

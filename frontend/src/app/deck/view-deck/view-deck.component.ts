@@ -25,11 +25,4 @@ export class ViewDeckComponent implements OnInit {
       });
     });
   }
-
-  contCard(card: Card) {
-    return this.deck.cards.reduce((prevVal, elem) => {
-      return elem.name === card.name ? prevVal += 1 : prevVal;
-    }, 0);
-  }
-
 }
