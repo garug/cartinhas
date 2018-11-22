@@ -12,13 +12,9 @@ import { Deck } from './../deck/models/deck';
     trigger('animated', [
       transition('* => *', [
         query(':enter', [
-          style({ transform: 'translateY(-20%)', opacity: 0 }),
+          style({ transform: 'translate3d(0, -20%, 0)', opacity: 0 }),
           stagger(150, [
-            animate('0.25s', keyframes([
-              style({transform: 'translateY(-15%)',  opacity: .2 }),
-              style({transform: 'translateY(-10%)',  opacity: .5 }),
-              style({transform: 'translateY(0)',  opacity: 1 })
-            ]))
+            animate('0.25s', style({transform: 'translate3d(0, 0, 0)', opacity: 1 }))
           ])
         ], {optional: true})
       ])
@@ -41,5 +37,11 @@ export class HomeComponent implements OnInit {
 
   teste(i) {
     console.log(i);
+  }
+
+  loadMore(value: number) {
+    for(let i = 0; i < value; i++) {
+      this.listDecks.push(this.listDecks.find(e => e.id != null));
+    }
   }
 }
