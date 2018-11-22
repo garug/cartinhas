@@ -8,9 +8,9 @@
 </div>
 <div class="wrapper">
   <h1>Decks</h1>
-  <div class="row no-gutters">
+  <div [@animated]="listDecks?.length" class="row no-gutters">
     <ng-container *ngFor="let deck of listDecks">
-      <article class="col-6 col-md-3">
+      <article class="col-6 col-md-3 deck">
         <app-deck-item [deck]="deck"></app-deck-item>
       </article>
     </ng-container>
