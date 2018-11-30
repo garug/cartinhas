@@ -3,6 +3,7 @@ package br.com.cartinhas.service;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.http.HttpEntity;
@@ -20,10 +21,30 @@ import com.google.gson.reflect.TypeToken;
 
 import br.com.cartinhas.entity.Card;
 import br.com.cartinhas.entity.CardDeserializer;
+import br.com.cartinhas.entity.Set;
 
 @Service
 public class APIService {
 	private static String BASE_URL = "https://api.magicthegathering.io/v1";
+	
+	public List<Set> getSets(List<String> sets) {
+		List<Set> listSets = Lists.newArrayList();
+		RestTemplate rt = new RestTemplate();
+		ResponseEntity<Set[]> response = rt.exchange(
+				BASE_URL + "/sets/",
+				HttpMethod.GET,
+				this.getEntity(),
+				Set[].class);
+		
+		System.out.println(response);
+		
+		return null;
+	}
+	
+	public List<Set> getSets(String... sets) {
+		List<String> listSets = Lists.newArrayList(sets);
+		return getSets(listSets);
+	}
 	
 	public List<Card> getFromSet(String set) {
 		RestTemplate rt = new RestTemplate();
@@ -33,8 +54,8 @@ public class APIService {
 		ResponseEntity<String> response;
 		Type type = new TypeToken<ArrayList<Card>>(){}.getType();
 		Gson gson = new GsonBuilder().registerTypeAdapter(type, new CardDeserializer()).create();
-		List<Card> cards = new ArrayList<Card>();
 		
+		List<Card> cards = new ArrayList<Card>();
 		int page = 1;
 		do {
 			response = rt.exchange(
@@ -47,6 +68,7 @@ public class APIService {
 //			System.out.println(response.getBody());
 			cards.addAll(gson.fromJson(response.getBody(), type));
 		} while (response.getHeaders().get("Link").toString().contains("next"));
+		
 		return cards;
 	}
 	

@@ -30,10 +30,12 @@ public class CargaInicial implements ApplicationListener<ContextRefreshedEvent> 
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         List<Deck> decks = deckRepository.findAll();
         String[] sets = {"xln", "rix", "grn", "dom", "m19"};
+        
+        api.getSets(sets);
 
         for (String set : sets) {
-        	List<Card> cards = api.getFromSet(set);
-        	cardRepository.saveAll(cards);
+//        	List<Card> cards = api.getFromSet(set).values();
+//        	cardRepository.saveAll(cards);
         }
 
         if (decks.isEmpty()) {

@@ -1,5 +1,6 @@
 $theme-colors: (
-  "primary": #3AAFB9
+  "primary": #3AAFB9,
+  "secondary": #4F7CAC
 );
 
 $my-color: map_get($theme-colors, "primary");

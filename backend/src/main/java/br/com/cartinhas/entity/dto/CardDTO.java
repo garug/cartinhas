@@ -3,6 +3,7 @@ package br.com.cartinhas.entity.dto;
 import java.util.List;
 
 import br.com.cartinhas.entity.Card;
+import br.com.cartinhas.entity.Set;
 import br.com.cartinhas.enuns.EColor;
 import br.com.cartinhas.enuns.ERarity;
 
@@ -10,7 +11,7 @@ public class CardDTO {
 	private String name;
 	private String manaCost;
 	private ERarity rarity;
-	private String set;
+	private Set set;
 	private String imageUrl;
 	private List<EColor> colors;
 	private List<String> types;
@@ -37,8 +38,8 @@ public class CardDTO {
 		return rarity;
 	}
 
-	public String getSet() {
-		return set;
+	public Set getSet() {
+		return this.set;
 	}
 	
 	public String getImageUrl() {

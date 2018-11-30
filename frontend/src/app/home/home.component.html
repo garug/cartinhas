@@ -8,7 +8,7 @@
 </div>
 <div class="wrapper">
   <h1>Decks</h1>
-  <div [@animated]="listDecks?.length" class="row no-gutters">
+  <div [@animated]="listDecks?.length" *ngIf="listDecks; else preload" class="row no-gutters">
     <ng-container *ngFor="let deck of listDecks">
       <article class="col-6 col-md-3 deck">
         <app-deck-item [deck]="deck"></app-deck-item>
@@ -17,3 +17,9 @@
   </div>
   <button class="btn btn-primary w-100 mt-2" (click)="loadMore(4)">Load More</button>
 </div>
+
+<ng-template #preload>
+  <div class="text-center">
+    <img class="mx-auto" src="assets/icons/preload.svg"/>
+  </div>
+</ng-template>

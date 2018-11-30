@@ -6,7 +6,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.cartinhas.enuns.ERarity;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -16,10 +17,15 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 
 import br.com.cartinhas.enuns.EColor;
+import br.com.cartinhas.enuns.ERarity;
+import br.com.cartinhas.repository.SetRepository;
 
 public class CardDeserializer implements  Serializable, JsonDeserializer<List<Card>> {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Autowired
+	SetRepository setRepo;
 
 	@Override
 	public List<Card> deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
@@ -36,7 +42,7 @@ public class CardDeserializer implements  Serializable, JsonDeserializer<List<Ca
 					this.getTypes(ele),
 					ele.get("manaCost") != null ? ele.get("manaCost").getAsString() : null,
 					ele.get("rarity") != null ? ERarity.getByDescription(ele.get("rarity").getAsString()) : null,
-					ele.get("set") != null ? ele.get("set").getAsString() : null
+					ele.get("set") != null ? setRepo.findByCode(ele.get("set").getAsString()) : null
 				);
 			cards.add(card);
 

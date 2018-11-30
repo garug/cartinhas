@@ -15,7 +15,8 @@ import { TooltipComponent } from './tooltip/tooltip.component';
   exports: [
     BarRaritysComponent,
     BarTypesComponent,
-    DeckItemComponent
+    DeckItemComponent,
+    TooltipComponent,
   ],
   declarations: [
     BarRaritysComponent,

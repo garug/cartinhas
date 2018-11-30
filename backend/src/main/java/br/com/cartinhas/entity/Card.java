@@ -1,17 +1,25 @@
 package br.com.cartinhas.entity;
 
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import br.com.cartinhas.enuns.ERarity;
 import com.google.gson.annotations.SerializedName;
 
 import br.com.cartinhas.entity.dto.CardDTO;
 import br.com.cartinhas.enuns.EColor;
+import br.com.cartinhas.enuns.ERarity;
 
 @Entity
 public class Card {
@@ -38,12 +46,14 @@ public class Card {
 
     @Enumerated(EnumType.STRING)
     private ERarity rarity;
-    private String set;
+    
+    @ManyToOne
+    private Set set;
     
 
     public Card(){ }
     
-    public Card(String idReference, List<CardName> names, List<EColor> colors, List<String> types, String manaCost, ERarity rarity, String set){
+    public Card(String idReference, List<CardName> names, List<EColor> colors, List<String> types, String manaCost, ERarity rarity, Set set){
     	this.idReference = idReference;
     	this.names = names;
     	this.colors = colors;
@@ -89,15 +99,9 @@ public class Card {
     	return this.types;
     }
     
-    public String getSet() {
+    public Set getSet() {
 		return set;
 	}
-    
-	private List<EColor> mapColors(String[] colors) {
-    	return Arrays.asList(colors).stream()
-				.map(e -> EColor.valueOf(e))
-				.collect(Collectors.toList());
-    }
     
     @Override
     public String toString() {
