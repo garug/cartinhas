@@ -1,0 +1,11 @@
+name: Deploy Cartinhas
+author: allef.garug
+
+on: [push]
+
+jobs:
+  build:
+    name: Deploy Front-end
+    runs-on: ubuntu-latest
+    steps:
+      uses: actions/heroku@1.0.0 
