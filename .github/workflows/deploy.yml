@@ -7,5 +7,11 @@ jobs:
     name: Deploy Front-end
     runs-on: ubuntu-latest
     steps:
-      uses: actions/heroku@1.0.0
-      run: login
+      - uses: actions/checkout@v1
+      # This step uses the hello-world-action stored in this workflow's repository.
+      - uses: ./hello-world-action
+        with:
+          who-to-greet: Octocat
+        id: hello
+      # This step prints the time.
+      - run: echo The time was ${{ steps.hello.outputs.time }}
