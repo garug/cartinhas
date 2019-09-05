@@ -1,5 +1,4 @@
 name: Deploy Cartinhas
-author: allef.garug
 
 on: [push]
 
