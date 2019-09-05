@@ -7,6 +7,5 @@ jobs:
     name: Deploy Front-end
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/heroku@v1.0.0
-      # This step prints the time.
-      - run: echo The time was ${{ steps.hello.outputs.time }}
+      - uses: actions/heroku@1.0.0
+      - run: heroku login
