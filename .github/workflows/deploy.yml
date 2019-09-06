@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/heroku@1.0.0
-      - run: heroku access
+      - run: heroku login -i
