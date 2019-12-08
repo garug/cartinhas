@@ -1,0 +1,22 @@
+
+<div *ngIf="(afAuth.authState | async) as user; else login;">
+
+  <img [src]="user.photoURL">
+  <div>
+    <h4>{{ user.displayName }}</h4>
+    <p>{{ user.providerData[0].email }}</p>
+  </div>
+
+  <button (click)="afAuth.auth.signOut()" class="btn btn-link">SignOut</button>
+</div>
+
+<ng-template #login>
+  <div class="w-25 p-3">
+    <a class="btn btn-block btn-social btn-facebook" (click)="loginWithFacebook()">
+      <span class="fab fa-facebook-f"></span> Sign in with Facebook
+    </a>
+    <a class="btn btn-block btn-social btn-google" (click)="loginWithGoogle()">
+      <span class="fab fa-google"></span> Sign in with Google
+    </a>
+  </div>
+</ng-template>

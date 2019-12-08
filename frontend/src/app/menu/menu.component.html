@@ -13,6 +13,16 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/deck">Deck</a>
         </li>
+        <div *ngIf="(afAuth.authState | async) as user; else login;">
+          <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" (click)="afAuth.auth.signOut()" >SignOut</a>
+          </li>
+        </div>
+        <ng-template #login>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/login">Entrar</a>
+          </li>
+        </ng-template>
       </ul>
     </div>
   </nav>

@@ -11,10 +11,19 @@ import { CookieService } from 'ngx-cookie-service';
 //import { SocialLoginModule, AuthServiceConfig } from 'angular5-social-login';
 import { SigninComponentComponent, getAuthServiceConfigs } from './signin-component/signin-component.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
+
+import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -25,6 +34,7 @@ import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
     MenuComponent,
     PageNotFoundComponent,
     SigninComponentComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +44,13 @@ import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
     SocialLoginModule,
     AppRoutingModule,
     DeckModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule, // storage
+    AngularFireFunctionsModule,
   ],
   providers: [
     CookieService,
