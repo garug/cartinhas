@@ -36,7 +36,7 @@
     "core-js": "^2.5.4",
     "express": "^4.16.4",
     "firebase": "^7.5.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-cookie-service": "^1.0.10",
     "path": "^0.12.7",
     "popper.js": "^1.16.0",
